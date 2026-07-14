@@ -1,0 +1,46 @@
+---
+import { t, teamList, type Lang } from '../data/content';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const L = t[lang];
+const members = teamList[lang];
+---
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>{L.pages.team.title}</h2>
+      <p>{L.pages.team.intro}</p>
+    </div>
+    <div class="team-grid">
+      {members.map(m => (
+        <article class="team-card">
+          <div class="team-img"><img src={m.img} alt={m.name} loading="lazy" width="320" height="380" /></div>
+          <div class="team-body">
+            <h3>{m.name}</h3>
+            <p class="team-role">{m.role}</p>
+            <p class="team-col">{m.col}</p>
+            <ul class="team-bullets">
+              {m.bullets.map(b => <li>{b}</li>)}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+  .team-card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 6px 20px rgba(20,50,80,.06); display: flex; flex-direction: column; }
+  .team-img { flex: 0 0 auto; }
+  .team-img img { display: block; width: 100%; aspect-ratio: 4/5; height: auto; object-fit: cover; }
+  .team-body { padding: 20px; }
+  .team-body h3 { color: var(--blue-dd); font-size: 1.2rem; margin-bottom: 2px; }
+  .team-role { color: var(--ink); font-weight: 600; font-size: .92rem; margin: 0 0 2px; }
+  .team-col { color: var(--muted); font-size: .82rem; margin: 0 0 12px; }
+  .team-bullets { list-style: none; padding: 0; margin: 0; }
+  .team-bullets li { position: relative; padding: 5px 0 5px 18px; font-size: .88rem; color: var(--muted); border-bottom: 1px solid var(--line); }
+  .team-bullets li:last-child { border-bottom: 0; }
+  .team-bullets li::before { content: '›'; position: absolute; left: 2px; color: var(--blue); font-weight: 700; }
+  @media (max-width: 520px) { .team-grid { grid-template-columns: 1fr; } }
+</style>

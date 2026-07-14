@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+# artefactos de desarrollo (no publicar)
+harvest/
+BUILD_BRIEF.md
+.impeccable/hook.cache.json

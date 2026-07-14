@@ -1,0 +1,49 @@
+---
+import { routes, t, pricesTables, type Lang } from '../data/content';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const L = t[lang];
+const r = routes[lang];
+const tables = pricesTables[lang];
+---
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>{L.pages.prices.title}</h2>
+      <p>{L.pages.prices.subtitle}</p>
+    </div>
+    <div class="price-grid">
+      {tables.map(tb => (
+        <div class="price-card">
+          <h3>{tb.title}</h3>
+          <table>
+            <tbody>
+              {tb.rows.map(row => (
+                <tr>
+                  <th scope="row">{row.label}</th>
+                  <td>{row.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+    <p class="price-note">★ {L.pages.prices.note}</p>
+    <div class="price-cta"><a href={r.booking} class="btn btn-primary">{L.cta.book}</a></div>
+  </div>
+</section>
+
+<style>
+  .price-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+  .price-card { border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 6px 20px rgba(20,50,80,.06); padding: 24px; }
+  .price-card h3 { color: var(--blue-dd); font-size: 1.1rem; margin-bottom: 14px; }
+  .price-card table { width: 100%; border-collapse: collapse; }
+  .price-card tr { border-bottom: 1px solid var(--line); }
+  .price-card tr:last-child { border-bottom: 0; }
+  .price-card th { text-align: left; font-weight: 500; color: var(--muted); padding: 11px 0; font-size: .95rem; }
+  .price-card td { text-align: right; font-weight: 700; color: var(--ink); font-family: 'Montserrat', sans-serif; padding: 11px 0; white-space: nowrap; }
+  .price-note { text-align: center; color: var(--blue-dd); font-weight: 600; margin: 32px 0 0; }
+  .price-cta { text-align: center; margin-top: 24px; }
+  @media (max-width: 520px) { .price-grid { grid-template-columns: 1fr; } }
+</style>

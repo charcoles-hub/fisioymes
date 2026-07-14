@@ -1,0 +1,30 @@
+---
+import { site } from '../data/site';
+import { t, type Lang } from '../data/content';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const L = t[lang];
+const url = site.bookingUrl;
+---
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>{L.pages.booking.title}</h2>
+      <p>{L.pages.booking.text}</p>
+    </div>
+    <div class="booking-box">
+      <iframe src={url} title={L.pages.booking.title} loading="lazy"></iframe>
+      <p class="booking-fallback">
+        <a href={url} target="_blank" rel="noopener" class="btn btn-primary">{L.pages.booking.fallback}</a>
+      </p>
+      <p class="booking-phone">{L.pages.booking.phoneAlt} <a href={site.phoneHref}>{site.phone}</a></p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .booking-box { max-width: 900px; margin: 0 auto; }
+  .booking-box iframe { width: 100%; min-height: 640px; border: 0; border-radius: 16px; box-shadow: 0 6px 20px rgba(20,50,80,.06); background: #fff; display: block; }
+  .booking-fallback { text-align: center; margin: 24px 0 8px; }
+  .booking-phone { text-align: center; color: var(--muted); font-size: .95rem; margin: 0; }
+</style>
