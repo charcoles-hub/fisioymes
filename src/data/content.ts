@@ -24,6 +24,7 @@ export const t = {
     lesions: {
       title: 'Lesions que tractem',
       subtitle: 'Recuperem la teva mobilitat i el teu benestar amb un pla personalitzat. Toca cada lesió per saber-ne més.',
+      more: 'Veure més lesions',
       items: [
         { name: 'Cervicàlgia', desc: 'Dolor al coll, causat per tensions o lesions als músculs i articulacions del coll. Pot empitjorar amb moviments específics.' },
         { name: 'Dorsàlgies', desc: 'Dolor a l’esquena per lesions musculars, hèrnies discals o problemes de la columna vertebral. Varia en intensitat i localització.' },
@@ -51,7 +52,7 @@ export const t = {
         { name: 'Pilates terapèutic', img: B + 'assets/tx-pilates.jpg', text: 'Enforteix, flexibilitza i tonifica el teu cos amb classes adaptades al grup. La primera classe és gratuïta i sense compromís.', badge: '1a classe gratuïta' },
       ],
     },
-    testimonials: { title: 'Què diuen de Fisioymés', subtitle: 'Ressenyes reals dels nostres pacients a Google.' },
+    testimonials: { title: 'Què diuen de Fisioymés', subtitle: 'Ressenyes reals dels nostres pacients a Google.', swipe: 'Llisca per veure’n més' },
     partners: { title: 'Treballen amb nosaltres' },
     contact: {
       title: 'Contacte',
@@ -82,6 +83,7 @@ export const t = {
     lesions: {
       title: 'Lesiones que tratamos',
       subtitle: 'Recuperamos tu movilidad y bienestar con un plan personalizado. Toca cada lesión para saber más.',
+      more: 'Ver más lesiones',
       items: [
         { name: 'Cervicalgia', desc: 'Dolor en el cuello, causado por tensiones o lesiones en los músculos y articulaciones. Puede empeorar con movimientos específicos.' },
         { name: 'Dorsalgias', desc: 'Dolor en la espalda por lesiones musculares, hernias discales o problemas de la columna vertebral. Varía en intensidad y localización.' },
@@ -109,7 +111,7 @@ export const t = {
         { name: 'Pilates terapéutico', img: B + 'assets/tx-pilates.jpg', text: 'Fortalece, flexibiliza y tonifica tu cuerpo con clases adaptadas al grupo. La primera clase es gratuita y sin compromiso.', badge: '1ª clase gratis' },
       ],
     },
-    testimonials: { title: 'Qué dicen de Fisioymés', subtitle: 'Reseñas reales de nuestros pacientes en Google.' },
+    testimonials: { title: 'Qué dicen de Fisioymés', subtitle: 'Reseñas reales de nuestros pacientes en Google.', swipe: 'Desliza para ver más' },
     partners: { title: 'Trabajan con nosotros' },
     contact: {
       title: 'Contacto',

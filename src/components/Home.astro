@@ -37,6 +37,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
       <h2>{L.lesions.title}</h2>
       <p>{L.lesions.subtitle}</p>
     </div>
+    <input type="checkbox" id="more-lesions" class="more-toggle" hidden />
     <div class="lesion-grid">
       {L.lesions.items.map((item, i) => (
         <details class="lesion">
@@ -49,6 +50,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
         </details>
       ))}
     </div>
+    <div class="more-wrap"><label for="more-lesions" class="btn btn-primary more-btn">{L.lesions.more}</label></div>
   </div>
 </section>
 
@@ -113,6 +115,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
         </blockquote>
       ))}
     </div>
+    <p class="rev-swipe" aria-hidden="true">{L.testimonials.swipe}</p>
   </div>
 </section>
 
@@ -183,6 +186,13 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
   .lesion[open] .lesion-plus::after { opacity: 0; }
   .lesion-desc { margin: 0; padding: 12px 14px 14px; font-size: .84rem; color: var(--muted); line-height: 1.5; border-top: 2px solid var(--blue); }
   @media (max-width: 520px) { .lesion-grid { grid-template-columns: 1fr 1fr; gap: 10px; } .lesion-name { font-size: .76rem; padding-right: 30px; } .lesion-desc { font-size: .8rem; } }
+  /* "Ver más" de lesiones: en móvil muestra 4 y revela el resto al pulsar; en escritorio se ven todas */
+  .more-wrap { text-align: center; margin-top: 22px; }
+  @media (min-width: 641px) { .more-wrap { display: none; } }
+  @media (max-width: 640px) {
+    .more-toggle:not(:checked) ~ .lesion-grid > .lesion:nth-child(n+5) { display: none; }
+    .more-toggle:checked ~ .more-wrap { display: none; }
+  }
 
   /* TRATAMIENTOS */
   .tx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -217,7 +227,19 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
   .rev-head .stars { font-size: .82rem; }
   .rev-g { flex: 0 0 auto; display: inline-flex; opacity: .95; }
   .rev p { font-size: .94rem; color: var(--muted); margin: 0; line-height: 1.6; }
-  @media (max-width: 820px) { .rev-grid { grid-template-columns: 1fr; } }
+  .rev-swipe { display: none; text-align: center; color: var(--muted); font-size: .85rem; margin: 14px 0 0; }
+  /* Móvil: carrusel deslizable (scroll-snap nativo) para acortar el scroll vertical */
+  @media (max-width: 820px) {
+    .rev-grid {
+      grid-template-columns: none; display: flex; gap: 14px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      margin-inline: -20px; padding: 6px 20px 14px;
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
+    .rev-grid::-webkit-scrollbar { display: none; }
+    .rev { flex: 0 0 84%; scroll-snap-align: center; }
+    .rev-swipe { display: block; }
+  }
 
   /* COLABORADORES */
   .partners { padding: clamp(34px,5vw,52px) 0; }
