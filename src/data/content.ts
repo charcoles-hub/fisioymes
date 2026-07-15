@@ -22,7 +22,7 @@ export const t = {
       ratingText: 'sobre 66 ressenyes a Google',
     },
     lesions: {
-      title: 'Lesions que tractem',
+      title: 'Lesions més freqüents que tractem',
       subtitle: 'Recuperem la teva mobilitat i el teu benestar amb un pla personalitzat. Toca cada lesió per saber-ne més.',
       more: 'Veure més lesions',
       items: [
@@ -81,7 +81,7 @@ export const t = {
       ratingText: 'sobre 66 reseñas en Google',
     },
     lesions: {
-      title: 'Lesiones que tratamos',
+      title: 'Lesiones más frecuentes que tratamos',
       subtitle: 'Recuperamos tu movilidad y bienestar con un plan personalizado. Toca cada lesión para saber más.',
       more: 'Ver más lesiones',
       items: [
