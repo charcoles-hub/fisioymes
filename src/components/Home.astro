@@ -9,6 +9,9 @@ const waLink = `https://wa.me/${site.whatsapp}`;
 const lesionImgs = ['CERVICALGIAS','DORSALGIAS','LUMBALGIAS','RADICULOPATIAS','MIGRANAS','RIGIDESA-ARTICULAR','TENDINOPATIAS','HERNIA-DISCAL','SOBRECARGA-MUSCULAR','ROTURA-MUSCULAR','DRENAJE','PUNTOS-GATILLOS','SUELO-PELVICO','ATM','REHAB'];
 const lesionExt = (n: string) => (n === 'MIGRANAS' ? 'jpg' : 'webp');
 const base = import.meta.env.BASE_URL;
+// Logo de Google (4 colores) para las reseñas.
+const googleG = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.7-.06-1.4-.18-2.06H12v3.9h5.9a5.04 5.04 0 0 1-2.19 3.3v2.74h3.54c2.07-1.9 3.25-4.72 3.25-7.88z"/><path fill="#34A853" d="M12 23c2.94 0 5.42-.97 7.22-2.64l-3.54-2.74c-.98.66-2.24 1.05-3.68 1.05-2.83 0-5.23-1.91-6.09-4.48H2.26v2.82A10.98 10.98 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.91 14.19a6.6 6.6 0 0 1 0-4.38V6.99H2.26a11 11 0 0 0 0 9.86l3.65-2.66z"/><path fill="#EA4335" d="M12 5.13c1.6 0 3.03.55 4.16 1.63l3.12-3.12A10.98 10.98 0 0 0 12 1 10.98 10.98 0 0 0 2.26 6.99l3.65 2.82C6.77 7.04 9.17 5.13 12 5.13z"/></svg>';
+const initial = (name: string) => name.trim().charAt(0).toUpperCase();
 ---
 <!-- HERO -->
 <section class="hero">
@@ -89,16 +92,27 @@ const base = import.meta.env.BASE_URL;
       <h2>{L.testimonials.title}</h2>
       <p>{L.testimonials.subtitle}</p>
     </div>
+    <div class="rev-badge">
+      <Fragment set:html={googleG} />
+      <strong>{site.googleRating}</strong>
+      <span class="stars">★★★★★</span>
+      <span class="rev-badge-txt">· {site.googleReviews} {lang === 'ca' ? 'ressenyes a Google' : 'reseñas en Google'}</span>
+    </div>
     <div class="rev-grid">
       {testimonials.map(rv => (
         <blockquote class="rev">
-          <span class="stars">★★★★★</span>
+          <div class="rev-head">
+            <span class="rev-av">{initial(rv.name)}</span>
+            <div class="rev-meta">
+              <cite>{rv.name}</cite>
+              <span class="stars">★★★★★</span>
+            </div>
+            <span class="rev-g"><Fragment set:html={googleG} /></span>
+          </div>
           <p>{rv.text}</p>
-          <cite>{rv.name}</cite>
         </blockquote>
       ))}
     </div>
-    <p class="rev-foot"><span class="stars">★★★★★</span> <strong>{site.googleRating}/5</strong> · {site.googleReviews} {lang === 'ca' ? 'ressenyes a Google' : 'reseñas en Google'}</p>
   </div>
 </section>
 
@@ -190,11 +204,19 @@ const base = import.meta.env.BASE_URL;
   .band p { color: #e5f2fc; margin: 0; }
 
   /* TESTIMONIOS */
-  .rev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .rev { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px; box-shadow: 0 4px 14px rgba(20,50,80,.05); }
-  .rev p { font-size: .93rem; color: var(--ink); margin: 10px 0 14px; }
-  .rev cite { font-style: normal; font-weight: 700; font-family: 'Montserrat',sans-serif; color: var(--blue-dd); font-size: .9rem; }
-  .rev-foot { text-align: center; margin: 30px 0 0; font-size: 1rem; }
+  .rev-badge { display: flex; width: fit-content; align-items: center; gap: 8px; margin: 0 auto clamp(28px,4vw,40px); padding: 9px 18px; background: #fff; border: 1px solid var(--line); border-radius: 999px; box-shadow: 0 4px 14px rgba(20,50,80,.06); font-size: .95rem; }
+  .rev-badge strong { font-family: 'Montserrat',sans-serif; color: var(--ink); }
+  .rev-badge .rev-badge-txt { color: var(--muted); }
+  .rev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .rev { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 24px; box-shadow: 0 6px 20px rgba(20,50,80,.06); display: flex; flex-direction: column; gap: 14px; transition: transform .18s, box-shadow .18s; }
+  .rev:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(20,50,80,.11); }
+  .rev-head { display: flex; align-items: center; gap: 12px; }
+  .rev-av { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, var(--blue), var(--blue-dd)); color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat',sans-serif; font-weight: 700; font-size: 1.15rem; }
+  .rev-meta { display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0; }
+  .rev-meta cite { font-style: normal; font-weight: 700; font-family: 'Montserrat',sans-serif; color: var(--ink); font-size: .95rem; }
+  .rev-head .stars { font-size: .82rem; }
+  .rev-g { flex: 0 0 auto; display: inline-flex; opacity: .95; }
+  .rev p { font-size: .94rem; color: var(--muted); margin: 0; line-height: 1.6; }
   @media (max-width: 820px) { .rev-grid { grid-template-columns: 1fr; } }
 
   /* COLABORADORES */
