@@ -1,6 +1,6 @@
 ---
 import { site, navKeys } from '../data/site';
-import { routes, t, type Lang } from '../data/content';
+import { routes, t, hours, type Lang } from '../data/content';
 interface Props { lang: Lang; page: string; title: string; description: string; }
 const { lang, page, title, description } = Astro.props;
 const L = t[lang];
@@ -116,9 +116,9 @@ const waLink = `https://wa.me/${site.whatsapp}`;
       <div>
         <h3>{L.footer.hours}</h3>
         <ul class="hours-list">
-          <li><span>{L.days[0]} – {L.days[4]}</span><span>9–21 / 9–20 h</span></li>
-          <li><span>{L.days[5]}</span><span>10 – 14 h</span></li>
-          <li><span>{L.days[6]}</span><span>—</span></li>
+          {L.days.map((day, i) => (
+            <li><span>{day}</span><span>{hours[i] ?? '—'}</span></li>
+          ))}
         </ul>
       </div>
       <div>
