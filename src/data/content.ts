@@ -19,7 +19,7 @@ export const t = {
     hero: {
       title: 'Benvingut/da a Fisioymés',
       text: 'Un equip compromès amb la teva salut. Apostem per una fisioteràpia basada en l’evidència, el tracte proper i tractaments adaptats a cada persona per ajudar-te a mantenir una vida activa i saludable.',
-      ratingText: 'sobre 66 ressenyes a Google',
+      ratingText: 'sobre {n} ressenyes a Google',
     },
     lesions: {
       title: 'Lesions més freqüents que tractem',
@@ -60,7 +60,7 @@ export const t = {
       name: 'Nom', email: 'Correu electrònic', message: 'Missatge', send: 'Enviar',
       or: 'o', prefer: 'Prefereixes reservar directament?',
     },
-    footer: { hours: 'Horari', follow: 'Segueix-nos', rights: 'Tots els drets reservats.', tagline: 'Fisioteràpia esportiva · Pilates · Massatge terapèutic' },
+    footer: { hours: 'Horari', closed: 'Tancat', follow: 'Segueix-nos', rights: 'Tots els drets reservats.', tagline: 'Fisioteràpia esportiva · Pilates · Massatge terapèutic' },
     days: ['Dilluns','Dimarts','Dimecres','Dijous','Divendres','Dissabte','Diumenge'],
     pages: {
       treatments: { title: 'Els nostres tractaments', subtitle: 'Teràpia manual i tecnologia avançada per reduir al màxim els temps de recuperació.' },
@@ -78,7 +78,7 @@ export const t = {
     hero: {
       title: 'Bienvenido/a a Fisioymés',
       text: 'Un equipo comprometido con tu salud. Apostamos por una fisioterapia basada en la evidencia, el trato cercano y tratamientos adaptados a cada persona para ayudarte a mantener una vida activa y saludable.',
-      ratingText: 'sobre 66 reseñas en Google',
+      ratingText: 'sobre {n} reseñas en Google',
     },
     lesions: {
       title: 'Lesiones más frecuentes que tratamos',
@@ -119,7 +119,7 @@ export const t = {
       name: 'Nombre', email: 'Correo electrónico', message: 'Mensaje', send: 'Enviar',
       or: 'o', prefer: '¿Prefieres reservar directamente?',
     },
-    footer: { hours: 'Horario', follow: 'Síguenos', rights: 'Todos los derechos reservados.', tagline: 'Fisioterapia deportiva · Pilates · Masaje terapéutico' },
+    footer: { hours: 'Horario', closed: 'Cerrado', follow: 'Síguenos', rights: 'Todos los derechos reservados.', tagline: 'Fisioterapia deportiva · Pilates · Masaje terapéutico' },
     days: ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'],
     pages: {
       treatments: { title: 'Nuestros tratamientos', subtitle: 'Terapia manual y tecnología avanzada para reducir al máximo los tiempos de recuperación.' },
