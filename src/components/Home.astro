@@ -42,10 +42,13 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
         slides[current].classList.add('active');
         dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
       };
+      const noAuto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const stopAuto = () => clearInterval(auto);
-      const startAuto = () => { auto = setInterval(() => goTo(current + 1), 5000); };
-      dots.forEach((d, i) => d.addEventListener('click', () => { stopAuto(); goTo(i); }));
-      const step = (dir: number) => { stopAuto(); goTo(current + dir); };
+      const startAuto = () => { if (!noAuto) auto = setInterval(() => goTo(current + 1), 5000); };
+      // Tras interacción reinicia el temporizador (no lo detiene): sigue en automático
+      const restartAuto = () => { stopAuto(); startAuto(); };
+      dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); restartAuto(); }));
+      const step = (dir: number) => { goTo(current + dir); restartAuto(); };
       document.getElementById('hero-prev')?.addEventListener('click', () => step(-1));
       document.getElementById('hero-next')?.addEventListener('click', () => step(1));
       // Swipe (dedo) + arrastre (ratón): umbral horizontal para pasar de foto
@@ -64,7 +67,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
         track.addEventListener('mousedown', (e) => { e.preventDefault(); down(e.clientX); });
         window.addEventListener('mouseup', (e) => up(e.clientX));
       }
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) startAuto();
+      startAuto();
       goTo(0);
     }
   </script>
