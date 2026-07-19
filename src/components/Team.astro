@@ -22,6 +22,12 @@ const members = teamList[lang];
             <ul class="team-bullets">
               {m.bullets.map(b => <li>{b}</li>)}
             </ul>
+            {m.bio && (
+              <details class="team-bio">
+                <summary>{L.cta.readMore}</summary>
+                {m.bio.map(p => <p>{p}</p>)}
+              </details>
+            )}
           </div>
         </article>
       ))}
@@ -42,5 +48,12 @@ const members = teamList[lang];
   .team-bullets li { position: relative; padding: 5px 0 5px 18px; font-size: .88rem; color: var(--muted); border-bottom: 1px solid var(--line); }
   .team-bullets li:last-child { border-bottom: 0; }
   .team-bullets li::before { content: '›'; position: absolute; left: 2px; color: var(--blue); font-weight: 700; }
+  /* ponytail: <details> nativo, sin JS de acordeón */
+  .team-bio { margin-top: 12px; }
+  .team-bio summary { cursor: pointer; list-style: none; color: var(--blue-d); font-weight: 600; font-size: .86rem; padding: 6px 0; }
+  .team-bio summary::-webkit-details-marker { display: none; }
+  .team-bio summary::after { content: ' ▾'; }
+  .team-bio[open] summary::after { content: ' ▴'; }
+  .team-bio p { font-size: .86rem; color: var(--muted); margin: 6px 0 0; }
   @media (max-width: 520px) { .team-grid { grid-template-columns: 1fr; } }
 </style>

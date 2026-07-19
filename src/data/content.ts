@@ -15,7 +15,7 @@ export const t = {
     langName: 'CA',
     other: { code: 'es', name: 'ES' },
     nav: { home: 'Inici', treatments: 'Tractaments', team: 'Equip', clinic: 'La Clínica', prices: 'Tarifes', booking: 'Reservar Cita' },
-    cta: { book: 'Reservar cita', contact: 'Contacte', whatsapp: 'Contacta per WhatsApp', seeTreatments: 'Veure tractaments', callUs: 'Truca’ns', seePrices: 'Veure tarifes' },
+    cta: { book: 'Reservar cita', contact: 'Contacte', whatsapp: 'Contacta per WhatsApp', seeTreatments: 'Veure tractaments', callUs: 'Truca’ns', seePrices: 'Veure tarifes', readMore: 'Veure més' },
     hero: {
       title: 'Benvingut/da a Fisioymés',
       text: 'Un equip compromès amb la teva salut. Apostem per una fisioteràpia basada en l’evidència, el tracte proper i tractaments adaptats a cada persona per ajudar-te a mantenir una vida activa i saludable.',
@@ -74,7 +74,7 @@ export const t = {
     langName: 'ES',
     other: { code: 'ca', name: 'CA' },
     nav: { home: 'Inicio', treatments: 'Tratamientos', team: 'Equipo', clinic: 'La Clínica', prices: 'Tarifas', booking: 'Reservar Cita' },
-    cta: { book: 'Reservar cita', contact: 'Contacto', whatsapp: 'Contacta por WhatsApp', seeTreatments: 'Ver tratamientos', callUs: 'Llámanos', seePrices: 'Ver tarifas' },
+    cta: { book: 'Reservar cita', contact: 'Contacto', whatsapp: 'Contacta por WhatsApp', seeTreatments: 'Ver tratamientos', callUs: 'Llámanos', seePrices: 'Ver tarifas', readMore: 'Ver más' },
     hero: {
       title: 'Bienvenido/a a Fisioymés',
       text: 'Un equipo comprometido con tu salud. Apostamos por una fisioterapia basada en la evidencia, el trato cercano y tratamientos adaptados a cada persona para ayudarte a mantener una vida activa y saludable.',
@@ -178,10 +178,10 @@ export const treatmentsList: Record<Lang, Treatment[]> = {
   ],
 };
 
-export interface TeamMember { img: string; name: string; role: string; col: string; bullets: string[]; }
+export interface TeamMember { img: string; name: string; role: string; col: string; bullets: string[]; bio?: string[]; }
 export const teamList: Record<Lang, TeamMember[]> = {
   ca: [
-    { img: B + 'assets/team-DIANA-LLONGUERAS.jpg', name: 'Diana Llongueras', role: 'Directora de Fisioymés', col: 'Col. 12.476', bullets: ['Màster en fisioteràpia de l’esport i readaptació', 'Menció en fisioteràpia neurològica (Bobath i Perfetti)', 'Punció seca i fibròlisi instrumental', 'Fisioterapeuta del Club Voleibol Sant Cugat', 'Ecografia musculoesquelètica'] },
+    { img: B + 'assets/team-DIANA-LLONGUERAS.jpg', name: 'Diana Llongueras Boqué', role: 'Directora de Fisioymés', col: 'Col. 12.476', bullets: ['Màster en Fisioteràpia de l’Esport i Readaptació Esportiva', 'Graduada en Fisioteràpia per l’Escola Universitària Gimbernat', 'Ecografia musculoesquelètica aplicada al diagnòstic i al tractament', 'Síndrome de Dolor Miofascial (Travell & Simons)', 'Fibròlisi Instrumental Miofascial (Ganxos)', 'Fisioestètica Avançada (Winback Academy)', 'Formació en teràpies invasives ecoguiades'], bio: ['Fisioterapeuta especialitzada en fisioteràpia avançada i ecoguiada.', 'Des de l’inici de la meva trajectòria professional he apostat per una fisioteràpia basada en l’evidència científica, la tecnologia i el tractament individualitzat. Com a directora de Fisioymés, el meu objectiu és oferir una atenció de màxima qualitat, combinant una valoració exhaustiva amb les tècniques més innovadores per ajudar cada pacient a recuperar-se de la manera més eficient possible.'] },
     { img: B + 'assets/team-LAIA-TEIXIDO.jpg', name: 'Laia Teixidó', role: 'Fisioterapeuta especialitzada en sòl pelvià', col: 'Col. 11.959', bullets: ['Fisioteràpia uroginecològica: postpart i disfuncions del sòl pelvià', 'Gimnàstica abdominal hipopressiva', 'Exercici terapèutic en l’embaràs', 'Mètode Pilates sòl', 'Ecografia musculoesquelètica'] },
     { img: B + 'assets/team-raulSerra.webp', name: 'Raúl Serra', role: 'Especialista en teràpia manual', col: 'Col. 4212 (CFC)', bullets: ['+20 anys d’experiència', 'Disfuncions cràniomandibulars i ATM', 'Punció seca i dolor miofascial', 'Ones de xoc', 'Fisioteràpia i massatge esportiu'] },
     { img: B + 'assets/team-Dylan-Koelma.webp', name: 'Dylan Koelma', role: 'Fisioterapeuta esportiu', col: 'Col. 17.166', bullets: ['Postgrau Expert en Diagnòstic Diferencial (2025)', 'Formació en Indiba Activ', 'Punció seca', 'Neuromodulació en patologia clínica', 'Especialista en exercici terapèutic'] },
@@ -189,7 +189,7 @@ export const teamList: Record<Lang, TeamMember[]> = {
     { img: B + 'assets/team-marina-marti.jpg', name: 'Marina Martí Casado', role: 'Fisioterapeuta', col: 'Col. 17890', bullets: ['Grau en Fisioteràpia (Menció en Aparell Locomotor)', 'Postgrau en Fisioteràpia Invasiva (ecografia, neuromodulació, neuroeix i electròlisi)', 'Seminaris Travell & Simons – Punció seca', 'Indiba Academy: musculoesquelètic i dermatofuncional'] },
   ],
   es: [
-    { img: B + 'assets/team-DIANA-LLONGUERAS.jpg', name: 'Diana Llongueras', role: 'Directora de Fisioymés', col: 'Col. 12.476', bullets: ['Máster en fisioterapia del deporte y readaptación', 'Mención en fisioterapia neurológica (Bobath y Perfetti)', 'Punción seca y fibrólisis instrumental', 'Fisioterapeuta del Club Voleibol Sant Cugat', 'Ecografía musculoesquelética'] },
+    { img: B + 'assets/team-DIANA-LLONGUERAS.jpg', name: 'Diana Llongueras Boqué', role: 'Directora de Fisioymés', col: 'Col. 12.476', bullets: ['Máster en Fisioterapia del Deporte y Readaptación Deportiva', 'Graduada en Fisioterapia por la Escuela Universitaria Gimbernat', 'Ecografía musculoesquelética aplicada al diagnóstico y al tratamiento', 'Síndrome de Dolor Miofascial (Travell & Simons)', 'Fibrólisis Instrumental Miofascial (Ganchos)', 'Fisioestética Avanzada (Winback Academy)', 'Formación en terapias invasivas ecoguiadas'], bio: ['Fisioterapeuta especializada en fisioterapia avanzada y ecoguiada.', 'Desde el inicio de mi trayectoria profesional he apostado por una fisioterapia basada en la evidencia científica, la tecnología y el tratamiento individualizado. Como directora de Fisioymés, mi objetivo es ofrecer una atención de máxima calidad, combinando una valoración exhaustiva con las técnicas más innovadoras para ayudar a cada paciente a recuperarse de la manera más eficiente posible.'] },
     { img: B + 'assets/team-LAIA-TEIXIDO.jpg', name: 'Laia Teixidó', role: 'Fisioterapeuta especializada en suelo pélvico', col: 'Col. 11.959', bullets: ['Fisioterapia uroginecológica: postparto y disfunciones del suelo pélvico', 'Gimnasia abdominal hipopresiva', 'Ejercicio terapéutico en el embarazo', 'Método Pilates suelo', 'Ecografía musculoesquelética'] },
     { img: B + 'assets/team-raulSerra.webp', name: 'Raúl Serra', role: 'Especialista en terapia manual', col: 'Col. 4212 (CFC)', bullets: ['+20 años de experiencia', 'Disfunciones craneomandibulares y ATM', 'Punción seca y dolor miofascial', 'Ondas de choque', 'Fisioterapia y masaje deportivo'] },
     { img: B + 'assets/team-Dylan-Koelma.webp', name: 'Dylan Koelma', role: 'Fisioterapeuta deportivo', col: 'Col. 17.166', bullets: ['Posgrado Experto en Diagnóstico Diferencial (2025)', 'Formación en Indiba Activ', 'Punción seca', 'Neuromodulación en patología clínica', 'Especialista en ejercicio terapéutico'] },
