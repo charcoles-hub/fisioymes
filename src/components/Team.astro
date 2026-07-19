@@ -4,9 +4,6 @@ interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const L = t[lang];
 const members = teamList[lang];
-// La directora va destacada arriba (es la única con bio); el resto, en rejilla uniforme.
-const lead = members.find(m => m.bio);
-const rest = members.filter(m => m !== lead);
 ---
 <section>
   <div class="wrap">
@@ -14,22 +11,8 @@ const rest = members.filter(m => m !== lead);
       <h2>{L.pages.team.title}</h2>
       <p>{L.pages.team.intro}</p>
     </div>
-    {lead && (
-      <article class="team-lead">
-        <div class="team-lead-img"><img src={lead.img} alt={lead.name} width="320" height="400" /></div>
-        <div class="team-lead-body">
-          <h3>{lead.name}</h3>
-          <p class="team-role">{lead.role}</p>
-          <p class="team-col">{lead.col}</p>
-          {lead.bio?.map(p => <p class="team-lead-bio">{p}</p>)}
-          <ul class="team-bullets">
-            {lead.bullets.map(b => <li>{b}</li>)}
-          </ul>
-        </div>
-      </article>
-    )}
     <div class="team-grid">
-      {rest.map(m => (
+      {members.map(m => (
         <article class="team-card">
           <div class="team-img"><img src={m.img} alt={m.name} loading="lazy" width="320" height="380" /></div>
           <div class="team-body">
@@ -39,6 +22,12 @@ const rest = members.filter(m => m !== lead);
             <ul class="team-bullets">
               {m.bullets.map(b => <li>{b}</li>)}
             </ul>
+            {m.bio && (
+              <details class="team-bio">
+                <summary>{L.cta.readMore}</summary>
+                {m.bio.map(p => <p>{p}</p>)}
+              </details>
+            )}
           </div>
         </article>
       ))}
@@ -59,20 +48,12 @@ const rest = members.filter(m => m !== lead);
   .team-bullets li { position: relative; padding: 5px 0 5px 18px; font-size: .88rem; color: var(--muted); border-bottom: 1px solid var(--line); }
   .team-bullets li:last-child { border-bottom: 0; }
   .team-bullets li::before { content: '›'; position: absolute; left: 2px; color: var(--blue); font-weight: 700; }
-  .team-lead { display: grid; grid-template-columns: minmax(240px, 320px) 1fr; gap: 28px; align-items: stretch; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 6px 20px rgba(20,50,80,.06); margin-bottom: 24px; }
-  .team-lead-img { height: 100%; }
-  .team-lead-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .team-lead-body { padding: 24px 24px 24px 0; }
-  .team-lead-body h3 { color: var(--blue-dd); font-size: 1.45rem; margin-bottom: 2px; }
-  .team-lead-bio { font-size: .92rem; color: var(--muted); margin: 12px 0 0; }
-  .team-lead-bio + .team-lead-bio { margin-top: 8px; }
-  .team-lead .team-bullets { margin-top: 16px; columns: 2; column-gap: 24px; }
-  .team-lead .team-bullets li { break-inside: avoid; }
-  @media (max-width: 760px) {
-    .team-lead { grid-template-columns: 1fr; gap: 0; }
-    .team-lead-img img { aspect-ratio: 4/5; }
-    .team-lead-body { padding: 20px; }
-    .team-lead .team-bullets { columns: 1; }
-  }
+  /* ponytail: <details> nativo, sin JS de acordeón */
+  .team-bio { margin-top: 12px; }
+  .team-bio summary { cursor: pointer; list-style: none; color: var(--blue-d); font-weight: 600; font-size: .86rem; padding: 6px 0; }
+  .team-bio summary::-webkit-details-marker { display: none; }
+  .team-bio summary::after { content: ' ▾'; }
+  .team-bio[open] summary::after { content: ' ▴'; }
+  .team-bio p { font-size: .86rem; color: var(--muted); margin: 6px 0 0; }
   @media (max-width: 520px) { .team-grid { grid-template-columns: 1fr; } }
 </style>
