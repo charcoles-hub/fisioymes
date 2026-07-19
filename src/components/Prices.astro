@@ -6,17 +6,14 @@ const L = t[lang];
 const r = routes[lang];
 const tables = pricesTables[lang];
 ---
-<div class="price-banner">
-  <img src={import.meta.env.BASE_URL + 'assets/clinic-clinica2.webp'} alt="" width="1920" height="1080" loading="eager" />
-  <div class="price-banner-text">
-    <h1>{L.pages.prices.title}</h1>
-    <p>{L.pages.prices.subtitle}</p>
-  </div>
-</div>
 <section class="price-section">
   <img class="price-side left" src={import.meta.env.BASE_URL + 'assets/clinic-recepcio.webp'} alt="" aria-hidden="true" loading="lazy" />
   <img class="price-side right" src={import.meta.env.BASE_URL + 'assets/clinic-mostrador.webp'} alt="" aria-hidden="true" loading="lazy" />
   <div class="wrap">
+    <div class="section-head">
+      <h2>{L.pages.prices.title}</h2>
+      <p>{L.pages.prices.subtitle}</p>
+    </div>
     <div class="price-grid">
       {tables.map(tb => (
         <div class="price-card">
@@ -40,12 +37,6 @@ const tables = pricesTables[lang];
 </section>
 
 <style>
-  .price-banner { position: relative; overflow: hidden; display: grid; place-items: center; text-align: center; color: #fff; padding: clamp(48px, 9vw, 96px) 20px; }
-  .price-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .price-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,51,87,.72), rgba(15,92,158,.62)); }
-  .price-banner-text { position: relative; z-index: 1; }
-  .price-banner-text h1 { color: #fff; font-size: clamp(1.9rem, 5vw, 2.9rem); margin-bottom: .25em; text-shadow: 0 2px 14px rgba(0,0,0,.28); }
-  .price-banner-text p { margin: 0; font-size: clamp(1rem, 2.2vw, 1.15rem); opacity: .95; }
   .price-section { position: relative; overflow: hidden; }
   .price-section .wrap { position: relative; z-index: 1; }
   /* ponytail: fotos decorativas de la clínica a ambos lados; se ocultan por debajo de 1100px, donde no hay margen que llenar */
