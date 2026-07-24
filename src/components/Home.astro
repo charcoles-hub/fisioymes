@@ -51,9 +51,11 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
       const step = (dir: number) => { goTo(current + dir); restartAuto(); };
       document.getElementById('hero-prev')?.addEventListener('click', () => step(-1));
       document.getElementById('hero-next')?.addEventListener('click', () => step(1));
-      // Swipe (dedo) + arrastre (ratón): umbral horizontal para pasar de foto
-      const track = document.getElementById('hero-track');
-      if (track) {
+      // Swipe (dedo) + arrastre (ratón): umbral horizontal para pasar de foto.
+      // Escucha en toda la sección (no solo la capa de imágenes): el bloque de texto
+      // se superpone por encima con z-index mayor y se comía el toque si solo escuchábamos en #hero-track.
+      const heroSection = document.querySelector('.hero');
+      if (heroSection) {
         let startX = 0, dragging = false;
         const down = (x: number) => { dragging = true; startX = x; };
         const up = (x: number) => {
@@ -62,9 +64,9 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
           const dx = x - startX;
           if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
         };
-        track.addEventListener('touchstart', (e) => down(e.touches[0].clientX), { passive: true });
-        track.addEventListener('touchend', (e) => up(e.changedTouches[0].clientX));
-        track.addEventListener('mousedown', (e) => { e.preventDefault(); down(e.clientX); });
+        heroSection.addEventListener('touchstart', (e) => down((e as TouchEvent).touches[0].clientX), { passive: true });
+        heroSection.addEventListener('touchend', (e) => up((e as TouchEvent).changedTouches[0].clientX));
+        heroSection.addEventListener('mousedown', (e) => { e.preventDefault(); down((e as MouseEvent).clientX); });
         window.addEventListener('mouseup', (e) => up(e.clientX));
       }
       startAuto();
@@ -206,7 +208,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
   .stars { color: #f5a623; letter-spacing: 1px; }
 
   /* HERO */
-  .hero { position: relative; color: #fff; padding: clamp(70px,14vw,150px) 0; overflow: hidden; }
+  .hero { position: relative; color: #fff; padding: clamp(70px,14vw,150px) 0; overflow: hidden; touch-action: pan-y; }
   .hero-bg { position: absolute; inset: 0; z-index: 0; }
   .hero-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; }
   .hero-slide.active { opacity: 1; animation: hero-slide-in .7s ease-in-out; }
@@ -238,10 +240,14 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
   .hero-text { font-size: clamp(1rem, 2.4vw, 1.15rem); color: #eaf4fb; }
   .hero-rating { display: flex; align-items: center; gap: 8px; font-size: .95rem; margin-bottom: 22px; }
   .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-  /* Escritorio: el bloque se centra y usa más ancho para aprovechar el espacio del carrusel */
+  /* Escritorio: el bloque se centra, usa más ancho y se agranda para aprovechar el espacio del carrusel */
   @media (min-width: 641px) {
-    .hero-in { max-width: 780px; margin: 0 auto; text-align: center; }
+    .hero-in { max-width: 860px; margin: 0 auto; text-align: center; }
     .hero-rating, .hero-cta { justify-content: center; }
+    .hero h1 { font-size: clamp(2.6rem, 4.6vw, 4.2rem); }
+    .hero-text { font-size: clamp(1.05rem, 1.6vw, 1.35rem); }
+    .hero-rating { font-size: 1.05rem; }
+    .hero-cta .btn { padding: 15px 30px; font-size: 1.05rem; }
   }
 
   /* LESIONES (desplegables) */
