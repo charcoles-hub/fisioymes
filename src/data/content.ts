@@ -53,7 +53,6 @@ export const t = {
       ],
     },
     testimonials: { title: 'Què diuen de Fisioymés', subtitle: 'Ressenyes reals dels nostres pacients a Google.', swipe: 'Llisca per veure’n més' },
-    partners: { title: 'Treballen amb nosaltres' },
     contact: {
       title: 'Contacte',
       text: 'Tens algun dubte o necessites més informació? Som aquí per ajudar-te.',
@@ -61,6 +60,7 @@ export const t = {
       or: 'o', prefer: 'Prefereixes reservar directament?',
     },
     footer: { hours: 'Horari', closed: 'Tancat', follow: 'Segueix-nos', rights: 'Tots els drets reservats.', tagline: 'Fisioteràpia esportiva · Pilates · Massatge terapèutic' },
+    cookies: { text: 'Utilitzem cookies pròpies i de tercers per millorar la teva experiència i analitzar la navegació. En continuar navegant acceptes la nostra política de privacitat i l’ús de cookies.', accept: 'D’acord' },
     days: ['Dilluns','Dimarts','Dimecres','Dijous','Divendres','Dissabte','Diumenge'],
     pages: {
       treatments: { title: 'Els nostres tractaments', subtitle: 'Teràpia manual i tecnologia avançada per reduir al màxim els temps de recuperació.' },
@@ -112,7 +112,6 @@ export const t = {
       ],
     },
     testimonials: { title: 'Qué dicen de Fisioymés', subtitle: 'Reseñas reales de nuestros pacientes en Google.', swipe: 'Desliza para ver más' },
-    partners: { title: 'Trabajan con nosotros' },
     contact: {
       title: 'Contacto',
       text: '¿Tienes alguna duda o necesitas más información? Estamos aquí para ayudarte.',
@@ -120,6 +119,7 @@ export const t = {
       or: 'o', prefer: '¿Prefieres reservar directamente?',
     },
     footer: { hours: 'Horario', closed: 'Cerrado', follow: 'Síguenos', rights: 'Todos los derechos reservados.', tagline: 'Fisioterapia deportiva · Pilates · Masaje terapéutico' },
+    cookies: { text: 'Utilizamos cookies propias y de terceros para mejorar tu experiencia y analizar la navegación. Al continuar navegando aceptas nuestra política de privacidad y el uso de cookies.', accept: 'De acuerdo' },
     days: ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'],
     pages: {
       treatments: { title: 'Nuestros tratamientos', subtitle: 'Terapia manual y tecnología avanzada para reducir al máximo los tiempos de recuperación.' },
@@ -246,12 +246,3 @@ export const pricesTables: Record<Lang, PriceTable[]> = {
     { title: 'Magnetoterapia superinductiva', rows: [ { label: 'Primera visita / sesión individual', value: '25 €' }, { label: 'Pack 5 sesiones', value: '100 €' }, { label: 'Pack 10 sesiones', value: '150 €' } ] },
   ],
 };
-
-// Colaboradores (logos reales de su web).
-export const partners = [
-  { img: B + 'assets/ELIT-LOGO-ORIGINAL.png', name: 'Elit' },
-  { img: B + 'assets/globalmov.png', name: 'Global Mov' },
-  { img: B + 'assets/marinoss.png', name: 'Marinoss' },
-  { img: B + 'assets/cvsc.jpg', name: 'Club Voleibol Sant Cugat' },
-  { img: B + 'assets/moto.png', name: 'Moto' },
-];

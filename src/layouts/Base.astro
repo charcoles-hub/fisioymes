@@ -142,11 +142,31 @@ const waLink = `https://wa.me/${site.whatsapp}`;
     <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="#fff" d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.6c1.7.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.7.7.7-3.6-.2-.4C6.5 18.9 6 17 6 15 6 9.5 10.5 5 16 5s10 4.5 10 10-4.5 9.8-10 9.8zm5.5-7.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.2s-.8 1-.9 1.2c-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
   </a>
 
+  <!-- Aviso de cookies / protecció de dades: es recuerda en localStorage tras aceptar -->
+  <div class="cookie-banner" id="cookie-banner" hidden>
+    <div class="wrap cookie-in">
+      <p>{L.cookies.text}</p>
+      <button type="button" id="cookie-accept" class="btn btn-primary">{L.cookies.accept}</button>
+    </div>
+  </div>
+  <script is:inline>
+    (function () {
+      var KEY = 'fym-cookie-consent';
+      if (localStorage.getItem(KEY)) return;
+      var el = document.getElementById('cookie-banner');
+      el.hidden = false;
+      document.getElementById('cookie-accept').addEventListener('click', function () {
+        localStorage.setItem(KEY, '1');
+        el.hidden = true;
+      });
+    })();
+  </script>
+
   <!-- El ocultado lo hace el CSS bajo .js-reveal (activado en <head>). Aquí solo escalonamos y disparamos el revelado al entrar en pantalla. -->
   <script is:inline>
     (function () {
       if (!document.documentElement.classList.contains('js-reveal')) return; // reduced-motion o sin JS previo
-      var sel = '.section-head, .tx-card, .team-card, .price-card, .clinic-item, .clinic-text p, .rev, .lesion, .partner-logo';
+      var sel = '.section-head, .tx-card, .team-card, .price-card, .clinic-item, .clinic-text p, .rev, .lesion';
       function start() {
         var els = document.querySelectorAll(sel);
         // escalonado en cascada: retardo según la posición dentro de cada grupo (mismo contenedor)
@@ -288,11 +308,11 @@ const waLink = `https://wa.me/${site.whatsapp}`;
     .wa-fab::before { animation: wa-pulse 2.6s ease-out infinite; }
   }
   /* Revelado al scroll: se oculta por SELECTOR bajo .js-reveal (marcado en <head> antes del primer pintado → sin parpadeo). El observer añade .in. */
-  .js-reveal :is(.section-head, .tx-card, .team-card, .price-card, .clinic-item, .clinic-text p, .rev, .lesion, .partner-logo) {
+  .js-reveal :is(.section-head, .tx-card, .team-card, .price-card, .clinic-item, .clinic-text p, .rev, .lesion) {
     opacity: 0; transform: translateY(34px) scale(.982); filter: blur(8px);
     transition: opacity .7s ease, transform .9s cubic-bezier(.22,.61,.36,1), filter .8s ease;
   }
-  .js-reveal :is(.section-head, .tx-card, .team-card, .price-card, .clinic-item, .clinic-text p, .rev, .lesion, .partner-logo).in {
+  .js-reveal :is(.section-head, .tx-card, .team-card, .price-card, .clinic-item, .clinic-text p, .rev, .lesion).in {
     opacity: 1; transform: none; filter: none;
   }
   /* la barra de acento del título se dibuja al revelarse */
@@ -302,6 +322,13 @@ const waLink = `https://wa.me/${site.whatsapp}`;
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
   @keyframes kenburns { from { transform: scale(1.09); } to { transform: scale(1); } }
   @keyframes wa-pulse { 0% { transform: scale(1); opacity: .55; } 70% { transform: scale(1.7); opacity: 0; } 100% { opacity: 0; } }
+
+  /* Aviso de cookies */
+  .cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; background: rgba(15,45,75,.97); color: #eaf4fb; box-shadow: 0 -4px 20px rgba(0,0,0,.15); }
+  .cookie-in { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 16px 20px; }
+  .cookie-in p { margin: 0; font-size: .88rem; max-width: 720px; }
+  .cookie-in .btn { flex-shrink: 0; padding: 10px 22px; }
+  @media (max-width: 640px) { .cookie-in { flex-direction: column; text-align: center; padding: 14px 18px; } }
 
   /* Pie */
   .footer { background: #14202e; color: #b7c6d4; padding: clamp(40px,6vw,60px) 0 0; margin-top: 20px; }
