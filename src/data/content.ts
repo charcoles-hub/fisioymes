@@ -59,7 +59,7 @@ export const t = {
       name: 'Nom', email: 'Correu electrònic', message: 'Missatge', send: 'Enviar',
       or: 'o', prefer: 'Prefereixes reservar directament?',
     },
-    footer: { hours: 'Horari', closed: 'Tancat', follow: 'Segueix-nos', rights: 'Tots els drets reservats.', tagline: 'Fisioteràpia esportiva · Pilates · Massatge terapèutic', map: 'Com arribar-hi' },
+    footer: { hours: 'Horari', closed: 'Tancat', follow: 'Segueix-nos', rights: 'Tots els drets reservats.', tagline: 'Fisioteràpia esportiva · Pilates · Massatge terapèutic' },
     cookies: { text: 'Utilitzem cookies pròpies i de tercers per millorar la teva experiència i analitzar la navegació. En continuar navegant acceptes la nostra política de privacitat i l’ús de cookies.', accept: 'D’acord' },
     days: ['Dilluns','Dimarts','Dimecres','Dijous','Divendres','Dissabte','Diumenge'],
     pages: {
@@ -118,7 +118,7 @@ export const t = {
       name: 'Nombre', email: 'Correo electrónico', message: 'Mensaje', send: 'Enviar',
       or: 'o', prefer: '¿Prefieres reservar directamente?',
     },
-    footer: { hours: 'Horario', closed: 'Cerrado', follow: 'Síguenos', rights: 'Todos los derechos reservados.', tagline: 'Fisioterapia deportiva · Pilates · Masaje terapéutico', map: 'Cómo llegar' },
+    footer: { hours: 'Horario', closed: 'Cerrado', follow: 'Síguenos', rights: 'Todos los derechos reservados.', tagline: 'Fisioterapia deportiva · Pilates · Masaje terapéutico' },
     cookies: { text: 'Utilizamos cookies propias y de terceros para mejorar tu experiencia y analizar la navegación. Al continuar navegando aceptas nuestra política de privacidad y el uso de cookies.', accept: 'De acuerdo' },
     days: ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'],
     pages: {

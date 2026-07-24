@@ -5,7 +5,6 @@ interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const L = t[lang];
 const r = routes[lang];
-const waLink = `https://wa.me/${site.whatsapp}`;
 const lesionImgs = ['CERVICALGIAS','DORSALGIAS','LUMBALGIAS','RADICULOPATIAS','MIGRANAS','RIGIDESA-ARTICULAR','TENDINOPATIAS','HERNIA-DISCAL','SOBRECARGA-MUSCULAR','ROTURA-MUSCULAR','DRENAJE','PUNTOS-GATILLOS','SUELO-PELVICO','ATM','REHAB'];
 const lesionExt = (n: string) => (n === 'MIGRANAS' ? 'jpg' : 'webp');
 const base = import.meta.env.BASE_URL;
@@ -179,15 +178,21 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
 <!-- CONTACTO -->
 <section id="contacte">
   <div class="wrap contact-grid">
-    <div>
+    <div class="contact-info">
       <h2>{L.contact.title}</h2>
       <p class="contact-text">{L.contact.text}</p>
       <ul class="contact-list">
         <li><a href={site.phoneHref}>{site.phone}</a></li>
         <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
-        <li><a href={site.mapsUrl} target="_blank" rel="noopener">{site.address} · {site.city}</a></li>
       </ul>
-      <a href={waLink} class="btn wa-btn" target="_blank" rel="noopener">{L.cta.whatsapp}</a>
+      <div class="contact-map">
+        <iframe
+          src="https://www.google.com/maps?q=Fisioym%C3%A9s+Carrer+Xerric+4+Sant+Cugat+del+Vall%C3%A8s&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title={`${site.address} · ${site.city}`}
+        ></iframe>
+      </div>
     </div>
     <!-- FormSubmit: envío real sin backend ni cuenta. El cliente debe confirmar una vez el primer email. -->
     <form class="contact-form" action={`https://formsubmit.co/${site.email}`} method="post">
@@ -321,12 +326,14 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
   }
 
   /* CONTACTO */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; }
+  .contact-info { display: flex; flex-direction: column; height: 100%; }
   .contact-text { color: var(--muted); }
   .contact-list { list-style: none; padding: 0; margin: 0 0 20px; }
   .contact-list li { padding: 10px 0; border-bottom: 1px solid var(--line); }
-  .wa-btn { background: var(--wa); color: #fff; }
-  .wa-btn:hover { background: #1eb958; }
+  .contact-map { display: block; flex: 1; min-height: 220px; margin-top: 20px; border-radius: 14px; overflow: hidden; filter: grayscale(.25); transition: filter .2s; }
+  .contact-map:hover { filter: none; }
+  .contact-map iframe { display: block; width: 100%; height: 100%; border: 0; }
   .contact-form { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 14px; }
   .contact-form label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: .88rem; color: var(--ink); }
   .contact-form input, .contact-form textarea { padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: .95rem; }
