@@ -72,8 +72,8 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
       goTo(0);
     }
   </script>
+  <h1 class="wrap hero-title">{L.hero.title}</h1>
   <div class="wrap hero-in">
-    <h1>{L.hero.title}</h1>
     <p class="hero-text">{L.hero.text}</p>
     <div class="hero-rating">
       <span class="stars">★★★★★</span>
@@ -242,7 +242,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
   @media (prefers-reduced-motion: reduce) { .hero-slide.active { animation: none; } }
   .hero-bg::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(105deg, rgba(15,50,85,.85) 0%, rgba(15,50,85,.55) 55%, rgba(15,50,85,.25) 100%); }
   .hero-in { position: relative; z-index: 2; max-width: 620px; }
-  .hero h1 { color: #fff; font-size: clamp(2rem, 7vw, 3.2rem); font-weight: 800; text-transform: uppercase; letter-spacing: .01em; }
+  .hero-title { position: relative; z-index: 2; color: #fff; font-size: clamp(2rem, 7vw, 3.2rem); font-weight: 800; text-transform: uppercase; letter-spacing: .01em; }
   .hero-text { font-size: clamp(1rem, 2.4vw, 1.15rem); color: #eaf4fb; }
   .hero-rating { display: flex; align-items: center; gap: 8px; font-size: .95rem; margin-bottom: 22px; }
   .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -250,7 +250,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
   @media (min-width: 641px) {
     .hero-in { max-width: 860px; margin: 0 auto; text-align: center; }
     .hero-rating, .hero-cta { justify-content: center; }
-    .hero h1 { font-size: clamp(2.6rem, 4.6vw, 4.2rem); }
+    .hero-title { font-size: clamp(2.2rem, 5.7vw, 4.2rem); white-space: nowrap; text-align: center; }
     .hero-text { font-size: clamp(1.05rem, 1.6vw, 1.35rem); }
     .hero-rating { font-size: 1.05rem; }
     .hero-cta .btn { padding: 15px 30px; font-size: 1.05rem; }
