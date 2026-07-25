@@ -36,6 +36,30 @@ const tables = pricesTables[lang];
   </div>
 </section>
 
+<!-- MÚTUES AMB REEMBORSAMENT -->
+<section class="section-soft insurance-section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>{L.pages.prices.insurance.title}</h2>
+      <p>{L.pages.prices.insurance.subtitle}</p>
+    </div>
+    <div class="insurance-text">
+      <p>{L.pages.prices.insurance.p1}</p>
+      <p>{L.pages.prices.insurance.p2}</p>
+    </div>
+    <h3 class="insurance-steps-title">{L.pages.prices.insurance.stepsTitle}</h3>
+    <div class="insurance-steps">
+      {L.pages.prices.insurance.steps.map((s, i) => (
+        <div class="insurance-step">
+          <span class="insurance-step-num">{i + 1}</span>
+          <h4>{s.title}</h4>
+          <p>{s.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 <style>
   .price-section { position: relative; overflow: hidden; }
   .price-section .wrap { position: relative; z-index: 1; }
@@ -56,4 +80,15 @@ const tables = pricesTables[lang];
   .price-note { text-align: center; color: var(--blue-dd); font-weight: 600; margin: 32px 0 0; }
   .price-cta { text-align: center; margin-top: 24px; }
   @media (max-width: 520px) { .price-grid { grid-template-columns: 1fr; } }
+
+  /* MÚTUES AMB REEMBORSAMENT */
+  .insurance-text { max-width: 720px; margin: 0 auto clamp(28px,5vw,44px); color: var(--muted); text-align: center; }
+  .insurance-steps-title { text-align: center; font-size: 1.3rem; margin-bottom: clamp(20px,4vw,32px); }
+  .insurance-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .insurance-step { border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 6px 20px rgba(20,50,80,.06); padding: 22px 20px; text-align: center; }
+  .insurance-step-num { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: var(--blue); color: #fff; font-weight: 800; font-family: 'Montserrat', sans-serif; margin-bottom: 14px; }
+  .insurance-step h4 { color: var(--heading); font-size: 1rem; margin: 0 0 8px; font-family: 'Montserrat', sans-serif; }
+  .insurance-step p { color: var(--muted); font-size: .88rem; margin: 0; line-height: 1.55; }
+  @media (max-width: 900px) { .insurance-steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .insurance-steps { grid-template-columns: 1fr; } }
 </style>
