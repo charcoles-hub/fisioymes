@@ -15,7 +15,7 @@ export const t = {
     langName: 'CA',
     other: { code: 'es', name: 'ES' },
     nav: { home: 'Inici', treatments: 'Tractaments', team: 'Equip', clinic: 'La Clínica', prices: 'Tarifes', booking: 'Reservar Cita' },
-    cta: { book: 'Reservar cita', contact: 'Contacte', whatsapp: 'Contacta per WhatsApp', seeTreatments: 'Veure tractaments', callUs: 'Truca’ns', seePrices: 'Veure tarifes', readMore: 'Veure més' },
+    cta: { book: 'Reservar cita', contact: 'Contacte', whatsapp: 'Contacta per WhatsApp', seeTreatments: 'Veure tractaments', callUs: 'Truca’ns', seePrices: 'Veure tarifes', readMore: 'Veure més', zoom: 'Ampliar imatge:', close: 'Tancar' },
     hero: {
       title: 'Benvingut/da a Fisioymés',
       text: 'Un equip compromès amb la teva salut. Apostem per una fisioteràpia basada en l’evidència, el tracte proper i tractaments adaptats a cada persona per ajudar-te a mantenir una vida activa i saludable.',
@@ -89,7 +89,7 @@ export const t = {
     langName: 'ES',
     other: { code: 'ca', name: 'CA' },
     nav: { home: 'Inicio', treatments: 'Tratamientos', team: 'Equipo', clinic: 'La Clínica', prices: 'Tarifas', booking: 'Reservar Cita' },
-    cta: { book: 'Reservar cita', contact: 'Contacto', whatsapp: 'Contacta por WhatsApp', seeTreatments: 'Ver tratamientos', callUs: 'Llámanos', seePrices: 'Ver tarifas', readMore: 'Ver más' },
+    cta: { book: 'Reservar cita', contact: 'Contacto', whatsapp: 'Contacta por WhatsApp', seeTreatments: 'Ver tratamientos', callUs: 'Llámanos', seePrices: 'Ver tarifas', readMore: 'Ver más', zoom: 'Ampliar imagen:', close: 'Cerrar' },
     hero: {
       title: 'Bienvenido/a a Fisioymés',
       text: 'Un equipo comprometido con tu salud. Apostamos por una fisioterapia basada en la evidencia, el trato cercano y tratamientos adaptados a cada persona para ayudarte a mantener una vida activa y saludable.',

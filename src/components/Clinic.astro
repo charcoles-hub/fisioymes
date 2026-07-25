@@ -30,7 +30,9 @@ const base = import.meta.env.BASE_URL;
     <div class="clinic-grid">
       {gallery.map(g => (
         <figure class="clinic-item">
-          <img src={g.img} alt={g.label} loading="lazy" width="380" height="260" />
+          <button type="button" class="clinic-zoom-btn" data-img={g.img} data-label={g.label} aria-label={`${L.cta.zoom} ${g.label}`}>
+            <img src={g.img} alt={g.label} loading="lazy" width="380" height="260" />
+          </button>
           <figcaption>{g.label}</figcaption>
         </figure>
       ))}
@@ -38,6 +40,31 @@ const base = import.meta.env.BASE_URL;
     <div class="clinic-cta"><a href={r.booking} class="btn btn-primary">{L.cta.book}</a></div>
   </div>
 </section>
+
+<!-- Lightbox: <dialog> nativo, sin JS de terceros -->
+<dialog id="clinic-lightbox" class="clinic-lightbox">
+  <button type="button" class="clinic-lightbox-close" aria-label={L.cta.close}>&times;</button>
+  <img id="clinic-lightbox-img" src="" alt="" />
+  <p id="clinic-lightbox-cap"></p>
+</dialog>
+<script>
+  const dialog = document.getElementById('clinic-lightbox') as HTMLDialogElement | null;
+  const img = document.getElementById('clinic-lightbox-img') as HTMLImageElement | null;
+  const cap = document.getElementById('clinic-lightbox-cap');
+  if (dialog && img && cap) {
+    document.querySelectorAll<HTMLButtonElement>('.clinic-zoom-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        img.src = btn.dataset.img ?? '';
+        img.alt = btn.dataset.label ?? '';
+        cap.textContent = btn.dataset.label ?? '';
+        dialog.showModal();
+      });
+    });
+    dialog.querySelector('.clinic-lightbox-close')?.addEventListener('click', () => dialog.close());
+    // Cerrar en clic sobre el fondo (::backdrop no es clicable directamente: si el clic cae sobre el propio <dialog>, es fuera del contenido)
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  }
+</script>
 
 <style>
   .clinic-intro { position: relative; overflow: hidden; }
@@ -51,8 +78,31 @@ const base = import.meta.env.BASE_URL;
   .clinic-text p { color: var(--muted); }
   .clinic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
   .clinic-item { position: relative; margin: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(20,50,80,.06); background: #fff; }
-  .clinic-item img { display: block; width: 100%; aspect-ratio: 3/2; height: auto; object-fit: cover; }
-  .clinic-item figcaption { position: absolute; inset: auto 0 0 0; background: linear-gradient(transparent, rgba(12,40,68,.9)); color: #fff; font-size: .9rem; font-weight: 600; padding: 24px 14px 12px; font-family: 'Montserrat', sans-serif; }
+  .clinic-item img { display: block; width: 100%; aspect-ratio: 3/2; height: auto; object-fit: cover; transition: transform .3s; }
+  .clinic-item figcaption { position: absolute; inset: auto 0 0 0; background: linear-gradient(transparent, rgba(12,40,68,.9)); color: #fff; font-size: .9rem; font-weight: 600; padding: 24px 14px 12px; font-family: 'Montserrat', sans-serif; pointer-events: none; }
   .clinic-cta { text-align: center; margin-top: 40px; }
   @media (max-width: 520px) { .clinic-grid { grid-template-columns: 1fr; } }
+
+  /* Botón que envuelve cada foto: activa el lightbox */
+  .clinic-zoom-btn { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+  .clinic-zoom-btn:hover img { transform: scale(1.05); }
+  .clinic-zoom-btn:focus-visible { outline: 3px solid var(--blue); outline-offset: -3px; }
+
+  /* Lightbox: <dialog> nativo */
+  /* Animación de apertura/cierre nativa del <dialog> (sin JS): @starting-style define el estado "antes" de la transición */
+  .clinic-lightbox {
+    border: 0; padding: 0; background: transparent; max-width: 92vw; max-height: 92vh; overflow: visible;
+    opacity: 1; transform: scale(1);
+    transition: opacity .25s ease, transform .25s ease, overlay .25s ease allow-discrete, display .25s ease allow-discrete;
+  }
+  .clinic-lightbox:not([open]) { opacity: 0; transform: scale(.92); }
+  @starting-style { .clinic-lightbox[open] { opacity: 0; transform: scale(.92); } }
+  .clinic-lightbox::backdrop {
+    background: rgba(10,25,40,.85);
+    transition: background-color .25s ease, overlay .25s ease allow-discrete, display .25s ease allow-discrete;
+  }
+  @starting-style { .clinic-lightbox[open]::backdrop { background-color: rgba(10,25,40,0); } }
+  .clinic-lightbox img { display: block; max-width: 100%; max-height: 80vh; width: auto; height: auto; border-radius: 10px; }
+  .clinic-lightbox p { color: #fff; text-align: center; font-weight: 600; font-family: 'Montserrat', sans-serif; margin: 12px 0 0; }
+  .clinic-lightbox-close { position: absolute; top: -14px; right: -14px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: #fff; color: var(--heading); font-size: 1.3rem; line-height: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
 </style>
