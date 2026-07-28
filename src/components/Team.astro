@@ -7,8 +7,9 @@ const members = teamList[lang];
 const base = import.meta.env.BASE_URL;
 ---
 <section class="team-section">
+  <img class="team-side left" src={base + 'assets/clinic-recepcio.webp'} alt="" aria-hidden="true" loading="lazy" />
+  <img class="team-side right" src={base + 'assets/clinic-mostrador.webp'} alt="" aria-hidden="true" loading="lazy" />
   <div class="wrap">
-    <img class="team-banner" src={base + 'assets/team-grup.webp'} alt="Equip de Fisioymés" loading="lazy" width="1400" height="963" />
     <div class="section-head">
       <h2>{L.pages.team.title}</h2>
       <p>{L.pages.team.intro}</p>
@@ -38,7 +39,13 @@ const base = import.meta.env.BASE_URL;
 </section>
 
 <style>
-  .team-banner { display: block; width: 100%; height: clamp(200px, 34vw, 420px); object-fit: cover; object-position: center 35%; border-radius: 20px; margin-bottom: 32px; box-shadow: 0 10px 30px rgba(20,50,80,.15); }
+  .team-section { position: relative; overflow: hidden; }
+  .team-section .wrap { position: relative; z-index: 1; }
+  /* ponytail: mismo tratamiento decorativo que Tarifes */
+  .team-side { position: absolute; top: 0; bottom: 0; width: clamp(190px, 22vw, 360px); height: 100%; object-fit: cover; pointer-events: none; }
+  .team-side.left { left: 0; opacity: .4; -webkit-mask-image: linear-gradient(90deg, #000 20%, transparent); mask-image: linear-gradient(90deg, #000 20%, transparent); }
+  .team-side.right { right: 0; opacity: .9; -webkit-mask-image: linear-gradient(270deg, #000 20%, transparent); mask-image: linear-gradient(270deg, #000 20%, transparent); }
+  @media (max-width: 1100px) { .team-side { display: none; } }
   .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
   .team-card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 6px 20px rgba(20,50,80,.06); display: flex; flex-direction: column; }
   .team-img { flex: 0 0 auto; }
