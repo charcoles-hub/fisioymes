@@ -272,7 +272,8 @@ const browsers = [
   .legal-doc p { margin-bottom: .9em; }
   .legal-doc ul { margin: 0 0 1em 1.1em; }
   .legal-doc li { margin-bottom: .5em; }
-  .legal-doc a { color: var(--blue); text-decoration: underline; word-break: break-word; }
+  /* :not(.btn) → el botón del panel de cookies conserva su texto blanco, si no queda azul sobre azul. */
+  .legal-doc a:not(.btn) { color: var(--blue); text-decoration: underline; word-break: break-word; }
   .legal-law { font-weight: 700; color: var(--heading); text-transform: uppercase; font-size: .85rem !important; letter-spacing: .02em; }
   .legal-sub { font-weight: 700; color: var(--heading); margin-bottom: .4em !important; }
   .legal-data { list-style: none; margin-left: 0 !important; }
