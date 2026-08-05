@@ -1,6 +1,6 @@
 ---
 import { site } from '../data/site';
-import { routes, t, testimonials, type Lang } from '../data/content';
+import { routes, t, testimonials, consent, type Lang } from '../data/content';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const L = t[lang];
@@ -204,6 +204,16 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
       <label>{L.contact.name}<input type="text" name="Nom" required /></label>
       <label>{L.contact.email}<input type="email" name="Email" required /></label>
       <label>{L.contact.message}<textarea name="Missatge" rows="4"></textarea></label>
+      <!-- Consentimiento LOPDGDD a doble capa: aquí la 1.ª capa (resumen + casilla), la 2.ª es la política de privacidad enlazada. -->
+      <div class="contact-consent">
+        <p><strong>{consent.heading}</strong> {consent.intro}</p>
+        <ul>{consent.items.map(i => <li>{i}</li>)}</ul>
+        <p>{consent.more} <a href={r.legal + '#politica-privacidad'}>{consent.moreLink}</a>.</p>
+        <label class="contact-check">
+          <input type="checkbox" name="Consentimiento comunicaciones" value="Sí" />
+          <span>{consent.check}</span>
+        </label>
+      </div>
       <button type="submit" class="btn btn-primary">{L.contact.send}</button>
       <p class="contact-or">{L.contact.or} · {L.contact.prefer} <a href={r.booking}>{L.cta.book}</a></p>
     </form>
@@ -337,6 +347,14 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
   .contact-map iframe { display: block; width: 100%; height: 100%; border: 0; }
   .contact-map-pin { position: absolute; bottom: 12px; right: 12px; z-index: 1; display: flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--line); box-shadow: 0 4px 14px rgba(20,50,80,.12); border-radius: 999px; padding: 6px 14px; font-size: .82rem; font-weight: 700; color: var(--heading); font-family: 'Montserrat',sans-serif; pointer-events: none; }
   .contact-form { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 14px; }
+  /* 1.ª capa del consentimiento: letra pequeña, no debe competir con los campos. */
+  .contact-consent { font-size: .74rem; line-height: 1.5; color: #5c6f80; }
+  .contact-consent p { margin: 0 0 .4em; }
+  .contact-consent ul { margin: 0 0 .4em 1.1em; }
+  .contact-consent a { color: var(--blue); text-decoration: underline; }
+  /* Especificidad extra: los label/input del formulario van en columna y con padding, aquí no. */
+  .contact-form .contact-check { flex-direction: row; align-items: flex-start; gap: 8px; margin-top: .6em; font-weight: 400; font-size: .74rem; color: inherit; cursor: pointer; }
+  .contact-form .contact-check input { margin-top: 1px; padding: 0; border: 0; flex-shrink: 0; width: 15px; height: 15px; accent-color: var(--blue); }
   .contact-form label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: .88rem; color: var(--ink); }
   .contact-form input, .contact-form textarea { padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: .95rem; }
   .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--blue); border-color: var(--blue); }

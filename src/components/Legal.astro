@@ -1,0 +1,289 @@
+---
+// Textos legales facilitados por la asesoría del cliente (PDF "FISIOYMES_READEP_SLP_Internet", 08/2026).
+// Se publican LITERALES y en castellano en las dos versiones del sitio: son documentos jurídicos
+// aprobados por su asesor, no se traducen ni se reescriben.
+import { routes, t, type Lang } from '../data/content';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const L = t[lang];
+const r = routes[lang];
+
+// Tabla de cookies del documento: [propiedad, cookie, finalidad, plazo]
+const technical = [
+  ['google.com', 'AEC', 'Cookie necesaria para la utilización de las opciones y servicios del sitio web', 'en 2 meses'],
+  ['google.com', 'SOCS', 'Cookie necesaria para la utilización de las opciones y servicios del sitio web', 'en 7 meses'],
+];
+const advertising = [
+  ['google.com', '__Secure-1PAPISID', 'Utilizada para la entrega de anuncios más relevantes, segmentación publicitaria y mantenimiento de la seguridad de la sesión de anuncios', 'en un año'],
+  ['google.com', '__Secure-1PSID', 'Cookie publicitaria de Google Ads', 'en un año'],
+  ['google.com', '__Secure-1PSIDCC', 'Cookie publicitaria de Google Ads', 'en un año'],
+  ['google.com', '__Secure-1PSIDTS', 'Cookie publicitaria de Google Ads', 'en un año'],
+  ['Google', '__Secure-3PAPISID', 'Estas cookies se utilizan para entregar anuncios más relevantes para usted y sus intereses.', 'en un año'],
+  ['google.com', '__Secure-3PSIDCC', 'Utilizada para la entrega de anuncios más relevantes, segmentación publicitaria y mantenimiento de la seguridad de la sesión de anuncios', 'en un año'],
+  ['google.com', '__Secure-3PSIDTS', 'Utilizada para la entrega de anuncios más relevantes, segmentación publicitaria y mantenimiento de la seguridad de la sesión de anuncios', 'en un año'],
+  ['google.com', '__Secure-BUCKET', 'Cookie publicitaria de Google Ads', 'en 5 meses'],
+  ['google.com', '__Secure-STRP', 'Cookie publicitaria de Google Ads', 'Sesión'],
+  ['Google', 'APISID', 'Descargar ciertas herramientas de Google y guardar ciertas preferencias, por ejemplo, el número de resultados de la búsqueda por hoja o la activación del filtro SafeSearch. Ajusta los anuncios que aparecen en la búsqueda de Google.', 'en un año'],
+  ['Google', 'DV', 'Estas cookies se utilizan para recopilar estadísticas del sitio web y rastrear las tasas de conversión y la personalización de anuncios de Google', 'Sesión'],
+  ['Google', 'HSID', 'Descargar ciertas herramientas de Google y guardar ciertas preferencias, por ejemplo, el número de resultados de la búsqueda por hoja o la activación del filtro SafeSearch. Ajusta los anuncios que aparecen en la búsqueda de Google.', 'en un año'],
+  ['Google', 'NID', 'Estas cookies se utilizan para recopilar estadísticas del sitio web y rastrear las tasas de conversión y la personalización de anuncios de Google', 'en 7 meses'],
+  ['Google', 'OTZ', 'Análisis agregado de los visitantes del sitio', 'en 15 días'],
+  ['Google', 'SAPISID', 'Descargar ciertas herramientas de Google y guardar ciertas preferencias, por ejemplo, el número de resultados de la búsqueda por hoja o la activación del filtro SafeSearch. Ajusta los anuncios que aparecen en la búsqueda de Google.', 'en un año'],
+  ['Google', 'SID', 'Descargar ciertas herramientas de Google y guardar ciertas preferencias, por ejemplo, el número de resultados de la búsqueda por hoja o la activación del filtro SafeSearch. Ajusta los anuncios que aparecen en la búsqueda de Google.', 'en un año'],
+  ['Google', 'SIDCC', 'Descargar ciertas herramientas de Google y guardar ciertas preferencias, por ejemplo, el número de resultados de la búsqueda por hoja o la activación del filtro SafeSearch. Ajusta los anuncios que aparecen en la búsqueda de Google.', 'en un año'],
+  ['Google', 'SSID', 'Descarga ciertas herramientas de Google y guarda ciertas preferencias, por ejemplo, el número de resultados de búsqueda por página o la activación del filtro SafeSearch. Ajusta los anuncios que aparecen en la Búsqueda de Google.', 'en un año'],
+];
+const browsers = [
+  ['Chrome', 'http://support.google.com/chrome/answer/95647?hl=es'],
+  ['Edge', 'https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09'],
+  ['Explorer', 'https://support.microsoft.com/es-es/help/278835/how-to-delete-cookie-files-in-internet-explorer'],
+  ['Firefox', 'https://www.mozilla.org/es-ES/privacy/websites/#cookies'],
+  ['Safari', 'https://support.apple.com/es-es/guide/safari/sfri11471/mac'],
+  ['Opera', 'https://help.opera.com/en/latest/security-and-privacy/#clearBrowsingData'],
+];
+---
+
+<section class="section legal">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>{L.legal.title}</h2>
+      <p>{L.legal.subtitle}</p>
+    </div>
+
+    <nav class="legal-index" aria-label={L.legal.title}>
+      <a href="#aviso-legal">{L.legal.notice}</a>
+      <a href="#politica-privacidad">{L.legal.privacy}</a>
+      <a href="#politica-cookies">{L.legal.cookies}</a>
+    </nav>
+
+    <article class="legal-doc" id="aviso-legal">
+      <h3>Aviso legal</h3>
+      <p class="legal-law">Ley de los Servicios de la Sociedad de la Información (LSSI)</p>
+      <p>FISIOYMES READEP S.L.P., responsable del sitio web, en adelante RESPONSABLE, pone a disposición de los usuarios el presente documento, con el que pretende dar cumplimiento a las obligaciones dispuestas en la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSICE), BOE N.º 166, así como informar a todos los usuarios del sitio web respecto a cuáles son las condiciones de uso.</p>
+      <p>Toda persona que acceda a este sitio web asume el papel de usuario, comprometiéndose a la observancia y cumplimiento riguroso de las disposiciones aquí dispuestas, así como a cualquier otra disposición legal que fuera de aplicación.</p>
+      <p>FISIOYMES READEP S.L.P. se reserva el derecho de modificar cualquier tipo de información que pudiera aparecer en el sitio web, sin que exista obligación de preavisar o poner en conocimiento de los usuarios dichas obligaciones, entendiéndose como suficiente la publicación en el sitio web de FISIOYMES READEP S.L.P.</p>
+
+      <h4>1. Datos identificativos</h4>
+      <ul class="legal-data">
+        <li><span>Nombre de dominio:</span> fisioymes.com</li>
+        <li><span>Nombre comercial:</span> FISIOYMES</li>
+        <li><span>Denominación social:</span> FISIOYMES READEP S.L.P.</li>
+        <li><span>NIF:</span> B42815951</li>
+        <li><span>Domicilio social:</span> Calle Xerric 4, 08172 Sant Cugat Del Valles (BARCELONA)</li>
+        <li><span>Teléfono:</span> 637765866</li>
+        <li><span>E-mail:</span> <a href="mailto:info@fisioymes.com">info@fisioymes.com</a></li>
+      </ul>
+
+      <h4>2. Derechos de propiedad intelectual e industrial</h4>
+      <p>El sitio web, incluyendo a título enunciativo pero no limitativo su programación, edición, compilación y demás elementos necesarios para su funcionamiento, los diseños, logotipos, texto y/o gráficos, son propiedad del RESPONSABLE o, si es el caso, dispone de licencia o autorización expresa por parte de los autores. Todos los contenidos del sitio web se encuentran debidamente protegidos por la normativa de propiedad intelectual e industrial, así como inscritos en los registros públicos correspondientes.</p>
+      <p>Independientemente de la finalidad para la que fueran destinados, la reproducción total o parcial, uso, explotación, distribución y comercialización, requiere en todo caso la autorización escrita previa por parte del RESPONSABLE. Cualquier uso no autorizado previamente se considera un incumplimiento grave de los derechos de propiedad intelectual o industrial del autor.</p>
+      <p>Los diseños, logotipos, texto y/o gráficos ajenos al RESPONSABLE y que pudieran aparecer en el sitio web, pertenecen a sus respectivos propietarios, siendo ellos mismos responsables de cualquier posible controversia que pudiera suscitarse respecto a los mismos. El RESPONSABLE autoriza expresamente a que terceros puedan redirigir directamente a los contenidos concretos del sitio web, y en todo caso redirigir al sitio web principal de fisioymes.com.</p>
+      <p>El RESPONSABLE reconoce a favor de sus titulares los correspondientes derechos de propiedad intelectual e industrial, no implicando su sola mención o aparición en el sitio web la existencia de derechos o responsabilidad alguna sobre los mismos, como tampoco respaldo, patrocinio o recomendación por parte del mismo.</p>
+      <p>Para realizar cualquier tipo de observación respecto a posibles incumplimientos de los derechos de propiedad intelectual o industrial, así como sobre cualquiera de los contenidos del sitio web, puede hacerlo a través del correo electrónico <a href="mailto:info@fisioymes.com">info@fisioymes.com</a>.</p>
+
+      <h4>3. Exención de responsabilidades</h4>
+      <p>El RESPONSABLE se exime de cualquier tipo de responsabilidad derivada de la información publicada en su sitio web siempre que no tenga conocimiento efectivo de que esta información haya sido manipulada o introducida por un tercero ajeno al mismo o, si lo tiene, haya actuado con diligencia para retirar los datos o hacer imposible el acceso a ellos.</p>
+      <p class="legal-sub">Uso de Cookies</p>
+      <p>Este sitio web puede utilizar cookies técnicas (pequeños archivos de información que el servidor envía al ordenador de quien accede a la página) para llevar a cabo determinadas funciones que son consideradas imprescindibles para el correcto funcionamiento y visualización del sitio. Las cookies utilizadas tienen, en todo caso, carácter temporal, con la única finalidad de hacer más eficaz la navegación, y desaparecen al terminar la sesión del usuario. En ningún caso, estas cookies proporcionan por sí mismas datos de carácter personal y no se utilizarán para la recogida de los mismos.</p>
+      <p>Mediante el uso de cookies también es posible que el servidor donde se encuentra la web reconozca el navegador utilizado por el usuario con la finalidad de que la navegación sea más sencilla, permitiendo, por ejemplo, el acceso de los usuarios que se hayan registrado previamente a las áreas, servicios, promociones o concursos reservados exclusivamente a ellos sin tener que registrarse en cada visita. También se pueden utilizar para medir la audiencia, parámetros de tráfico, controlar el progreso y número de entradas, etc., siendo en estos casos cookies prescindibles técnicamente, pero beneficiosas para el usuario. Este sitio web no instalará cookies prescindibles sin el consentimiento previo del usuario.</p>
+      <p>El usuario tiene la posibilidad de configurar su navegador para ser alertado de la recepción de cookies y para impedir su instalación en su equipo. Por favor, consulte las instrucciones de su navegador para ampliar esta información.</p>
+      <p class="legal-sub">Política de enlaces</p>
+      <p>Desde el sitio web, es posible que se redirija a contenidos de terceros sitios web. Dado que el RESPONSABLE no puede controlar siempre los contenidos introducidos por terceros en sus respectivos sitios web, no asume ningún tipo de responsabilidad respecto a dichos contenidos. En todo caso, procederá a la retirada inmediata de cualquier contenido que pudiera contravenir la legislación nacional o internacional, la moral o el orden público, procediendo a la retirada inmediata de la redirección a dicho sitio web, poniendo en conocimiento de las autoridades competentes el contenido en cuestión.</p>
+      <p>El RESPONSABLE no se hace responsable de la información y contenidos almacenados, a título enunciativo pero no limitativo, en foros, chats, generadores de blogs, comentarios, redes sociales o cualquier otro medio que permita a terceros publicar contenidos de forma independiente en la página web del RESPONSABLE. Sin embargo, y en cumplimiento de lo dispuesto en los artículos 11 y 16 de la LSSICE, se pone a disposición de todos los usuarios, autoridades y fuerzas de seguridad, colaborando de forma activa en la retirada o, en su caso, bloqueo de todos aquellos contenidos que puedan afectar o contravenir la legislación nacional o internacional, los derechos de terceros o la moral y el orden público. En caso de que el usuario considere que existe en el sitio web algún contenido que pudiera ser susceptible de esta clasificación, se ruega lo notifique de forma inmediata al administrador del sitio web.</p>
+      <p>Este sitio web se ha revisado y probado para que funcione correctamente. En principio, puede garantizarse el correcto funcionamiento los 365 días del año, 24 horas al día. Sin embargo, el RESPONSABLE no descarta la posibilidad de que existan ciertos errores de programación, o que acontezcan causas de fuerza mayor, catástrofes naturales, huelgas o circunstancias semejantes que hagan imposible el acceso a la página web.</p>
+      <p class="legal-sub">Direcciones IP</p>
+      <p>Los servidores del sitio web podrán detectar de manera automática la dirección IP y el nombre de dominio utilizados por el usuario. Una dirección IP es un número asignado automáticamente a un ordenador cuando este se conecta a Internet. Toda esta información se registra en un fichero de actividad del servidor que permite el posterior procesamiento de los datos con el fin de obtener mediciones únicamente estadísticas que permitan conocer el número de impresiones de páginas, el número de visitas realizadas a los servidores web, el orden de visitas, el punto de acceso, etc.</p>
+
+      <h4>4. Ley aplicable y jurisdicción</h4>
+      <p>Para la resolución de todas las controversias o cuestiones relacionadas con el presente sitio web o de las actividades en él desarrolladas, será de aplicación la legislación española, a la que se someten expresamente las partes, siendo competentes para la resolución de todos los conflictos derivados o relacionados con su uso los Juzgados y Tribunales del domicilio del USUARIO o el lugar del cumplimiento de la obligación.</p>
+    </article>
+
+    <article class="legal-doc" id="politica-privacidad">
+      <h3>Política de privacidad</h3>
+
+      <h4>1. Información al usuario</h4>
+      <p class="legal-sub">¿Quién es el responsable del tratamiento de tus datos personales?</p>
+      <p>FISIOYMES READEP S.L.P. es el RESPONSABLE del tratamiento de los datos personales del USUARIO y le informa de que estos datos serán tratados de conformidad con lo dispuesto en el Reglamento (UE) 2016/679, de 27 de abril (RGPD), y la Ley Orgánica 3/2018, de 5 de diciembre (LOPDGDD).</p>
+
+      <p class="legal-sub">¿Para qué tratamos tus datos personales?</p>
+      <p>Para mantener una relación comercial con el usuario. Las operaciones previstas para realizar el tratamiento son:</p>
+      <ul>
+        <li>Remisión de comunicaciones comerciales publicitarias por e-mail, fax, SMS, MMS, redes sociales o cualquier otro medio electrónico o físico, presente o futuro, que posibilite realizar comunicaciones comerciales. Estas comunicaciones serán realizadas por el RESPONSABLE y estarán relacionadas con sus productos y servicios, o de sus colaboradores o proveedores, con los que este haya alcanzado algún acuerdo de promoción. En este caso, los terceros nunca tendrán acceso a los datos personales.</li>
+        <li>Realizar estudios de mercado y análisis estadísticos.</li>
+        <li>Tramitar encargos, solicitudes, dar respuesta a las consultas o cualquier tipo de petición que sea realizada por el USUARIO a través de cualquiera de las formas de contacto que se ponen a su disposición en la página web del RESPONSABLE.</li>
+        <li>Remitir el boletín informativo online, sobre novedades, ofertas y promociones en nuestra actividad.</li>
+      </ul>
+
+      <p class="legal-sub">¿Por qué motivo podemos tratar tus datos personales?</p>
+      <p>Porque el tratamiento está legitimado por el artículo 6 del RGPD de la siguiente forma:</p>
+      <ul>
+        <li>Con el consentimiento del USUARIO: remisión de comunicaciones comerciales y del boletín informativo.</li>
+        <li>Por interés legítimo del RESPONSABLE: realizar estudios de mercado, análisis estadísticos, etc. y tramitar encargos, solicitudes, etc. a petición del USUARIO.</li>
+      </ul>
+
+      <p class="legal-sub">¿Durante cuánto tiempo guardaremos tus datos personales?</p>
+      <p>Se conservarán durante no más tiempo del necesario para mantener el fin del tratamiento o existan prescripciones legales que dictaminen su custodia y cuando ya no sea necesario para ello, se suprimirán con medidas de seguridad adecuadas para garantizar la anonimización de los datos o la destrucción total de los mismos.</p>
+
+      <p class="legal-sub">¿A quién facilitamos tus datos personales?</p>
+      <p>No está prevista ninguna comunicación de datos personales a terceros salvo por obligación legal o, si fuese necesario para el desarrollo y ejecución de las finalidades del tratamiento, a nuestros proveedores de servicios relacionados con comunicaciones, con los cuales el RESPONSABLE tiene suscritos los contratos de confidencialidad y de encargado de tratamiento exigidos por la normativa vigente de privacidad.</p>
+
+      <p class="legal-sub">¿Cuáles son tus derechos?</p>
+      <p>Los derechos que asisten al USUARIO son:</p>
+      <ul>
+        <li>Derecho a retirar el consentimiento en cualquier momento.</li>
+        <li>Derecho de acceso, rectificación, portabilidad y supresión de sus datos, y de limitación u oposición a su tratamiento.</li>
+        <li>Derecho a presentar una reclamación ante la autoridad de control (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>) si considera que el tratamiento no se ajusta a la normativa vigente.</li>
+      </ul>
+      <p class="legal-sub">Datos de contacto para ejercer sus derechos:</p>
+      <p>FISIOYMES READEP S.L.P. Calle Xerric, 4 Bajo - 08172 Sant Cugat Del Valles (Barcelona). E-mail: <a href="mailto:info@fisioymes.com">info@fisioymes.com</a>.</p>
+
+      <h4>2. Carácter obligatorio o facultativo de la información facilitada por el usuario</h4>
+      <p>Los USUARIOS, mediante la marcación de las casillas correspondientes y la entrada de datos en los campos, marcados con un asterisco (*) en el formulario de contacto o presentados en formularios de descarga, aceptan expresamente y de forma libre e inequívoca, que sus datos son necesarios para atender su petición, por parte del prestador, siendo voluntaria la inclusión de datos en los campos restantes. El USUARIO garantiza que los datos personales facilitados al RESPONSABLE son veraces y se hace responsable de comunicar cualquier modificación de los mismos.</p>
+      <p>El RESPONSABLE informa de que todos los datos solicitados a través del sitio web son obligatorios, ya que son necesarios para la prestación de un servicio óptimo al USUARIO. En caso de que no se faciliten todos los datos, no se garantiza que la información y servicios facilitados sean completamente ajustados a sus necesidades.</p>
+
+      <h4>3. Medidas de seguridad</h4>
+      <p>Que de conformidad con lo dispuesto en las normativas vigentes en protección de datos personales, el RESPONSABLE está cumpliendo con todas las disposiciones de las normativas RGPD y LOPDGDD para el tratamiento de los datos personales de su responsabilidad, y manifiestamente con los principios descritos en el artículo 5 del RGPD, por los cuales son tratados de manera lícita, leal y transparente en relación con el interesado y adecuados, pertinentes y limitados a lo necesario en relación con los fines para los que son tratados.</p>
+      <p>El RESPONSABLE garantiza que ha implementado políticas técnicas y organizativas apropiadas para aplicar las medidas de seguridad que establecen el RGPD y la LOPDGDD con el fin de proteger los derechos y libertades de los USUARIOS y les ha comunicado la información adecuada para que puedan ejercerlos.</p>
+      <p>Para más información sobre las garantías de privacidad, puedes dirigirte al RESPONSABLE a través de FISIOYMES READEP S.L.P. Calle Xerric, 4 Bajo - 08172 Sant Cugat Del Valles (Barcelona). E-mail: <a href="mailto:info@fisioymes.com">info@fisioymes.com</a>.</p>
+    </article>
+
+    <article class="legal-doc" id="politica-cookies">
+      <h3>Política de cookies</h3>
+
+      <h4>Información sobre cookies</h4>
+      <p>Conforme con la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico (LSSI), en relación con el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, General de Protección de Datos (RGPD) y la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos y Garantía de los Derechos Digitales (LOPDGDD), es obligado obtener el consentimiento expreso del usuario de todas las páginas web que usan cookies prescindibles, antes de que este navegue por ellas.</p>
+
+      <h4>¿Qué son las cookies?</h4>
+      <p>Las cookies y otras tecnologías similares tales como local shared objects, flash cookies o píxeles, son herramientas empleadas por los servidores Web para almacenar y recuperar información acerca de sus visitantes, así como para ofrecer un correcto funcionamiento del sitio.</p>
+      <p>Mediante el uso de estos dispositivos se permite al servidor Web recordar algunos datos concernientes al usuario, como sus preferencias para la visualización de las páginas de ese servidor, nombre y contraseña, productos que más le interesan, etc.</p>
+
+      <h4>Cookies afectadas por la normativa y cookies exceptuadas</h4>
+      <p>Según la directiva de la UE, las cookies que requieren el consentimiento informado por parte del usuario son las cookies de analítica y las de publicidad y afiliación, quedando exceptuadas las de carácter técnico y las necesarias para el funcionamiento del sitio web o la prestación de servicios expresamente solicitados por el usuario.</p>
+
+      <h4>Tipos de cookies</h4>
+      <p class="legal-sub">Según la finalidad</p>
+      <ul>
+        <li><strong>Cookies técnicas y funcionales:</strong> son aquellas que permiten al usuario la navegación a través de una página web, plataforma o aplicación y la utilización de las diferentes opciones o servicios que en ella existan.</li>
+        <li><strong>Cookies analíticas:</strong> son aquellas que permiten al responsable de las mismas el seguimiento y análisis del comportamiento de los usuarios de los sitios web a los que están vinculadas. La información recogida mediante este tipo de cookies se utiliza en la medición de la actividad de los sitios web, aplicación o plataforma y para la elaboración de perfiles de navegación de los usuarios de dichos sitios, aplicaciones y plataformas, con el fin de introducir mejoras en función del análisis de los datos de uso que hacen los usuarios del servicio.</li>
+        <li><strong>Cookies publicitarias:</strong> son aquellas que permiten la gestión, de la forma más eficaz posible, de los espacios publicitarios que, en su caso, el editor haya incluido en una página web, aplicación o plataforma desde la que presta el servicio solicitado en base a criterios como el contenido editado o la frecuencia en la que se muestran los anuncios.</li>
+        <li><strong>Cookies de publicidad comportamental:</strong> recogen información sobre las preferencias y elecciones personales del usuario (retargeting) para permitir la gestión, de la forma más eficaz posible, de los espacios publicitarios que, en su caso, el editor haya incluido en una página web, aplicación o plataforma desde la que presta el servicio solicitado.</li>
+        <li><strong>Cookies sociales:</strong> son establecidas por las plataformas de redes sociales en los servicios para permitirle compartir contenido con sus amigos y redes. Las plataformas de medios sociales tienen la capacidad de rastrear su actividad en línea fuera de los Servicios. Esto puede afectar al contenido y los mensajes que ve en otros servicios que visita.</li>
+        <li><strong>Cookies de afiliados:</strong> permiten hacer un seguimiento de las visitas procedentes de otras webs, con las que el sitio web establece un contrato de afiliación (empresas de afiliación).</li>
+        <li><strong>Cookies de seguridad:</strong> almacenan información cifrada para evitar que los datos guardados en ellas sean vulnerables a ataques maliciosos de terceros.</li>
+      </ul>
+      <p class="legal-sub">Según la propiedad</p>
+      <ul>
+        <li><strong>Cookies propias:</strong> son aquellas que se envían al equipo terminal del usuario desde un equipo o dominio gestionado por el propio editor y desde el que se presta el servicio solicitado por el usuario.</li>
+        <li><strong>Cookies de terceros:</strong> son aquellas que se envían al equipo terminal del usuario desde un equipo o dominio que no es gestionado por el editor, sino por otra entidad que trata los datos obtenidos través de las cookies.</li>
+      </ul>
+      <p class="legal-sub">Según el plazo de conservación</p>
+      <ul>
+        <li><strong>Cookies de sesión:</strong> son un tipo de cookies diseñadas para recabar y almacenar datos mientras el usuario accede a una página web.</li>
+        <li><strong>Cookies persistentes:</strong> son un tipo de cookies en el que los datos siguen almacenados en el terminal y pueden ser accedidos y tratados durante un período definido por el responsable de la cookie, y que puede ir de unos minutos a varios años.</li>
+      </ul>
+
+      <h4>Tratamiento de datos personales</h4>
+      <p>FISIOYMES READEP S.L.P. es el Responsable del tratamiento de los datos personales del Interesado y le informa de que estos datos serán tratados de conformidad con lo dispuesto en el Reglamento (UE) 2016/679, de 27 de abril de 2016 (RGPD), por lo que se le facilita la siguiente información del tratamiento:</p>
+      <ul>
+        <li><strong>Fines del tratamiento:</strong> según se especifica en el apartado de cookies que se utilizan en este sitio web.</li>
+        <li><strong>Legitimación del tratamiento:</strong> salvo en los casos en los que resulte necesario para la navegación por la web, por consentimiento del interesado (art. 6.1.a RGPD).</li>
+        <li><strong>Criterios de conservación de los datos:</strong> según se especifica en el apartado de cookies utilizadas en la web.</li>
+        <li><strong>Comunicación de los datos:</strong> no se comunicarán los datos a terceros, excepto en cookies propiedad de terceros o por obligación legal.</li>
+      </ul>
+      <p class="legal-sub">Derechos que asisten al Interesado:</p>
+      <ul>
+        <li>Derecho a retirar el consentimiento en cualquier momento.</li>
+        <li>Derecho de acceso, rectificación, portabilidad y supresión de sus datos, y de limitación u oposición a su tratamiento.</li>
+        <li>Derecho a presentar una reclamación ante la Autoridad de control (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>) si considera que el tratamiento no se ajusta a la normativa vigente.</li>
+      </ul>
+      <p class="legal-sub">Datos de contacto para ejercer sus derechos:</p>
+      <p>FISIOYMES READEP S.L.P. Calle Xerric, 4 Bajo - 08172 Sant Cugat Del Valles (Barcelona). E-mail: <a href="mailto:info@fisioymes.com">info@fisioymes.com</a>.</p>
+
+      <h4>Cookies utilizadas en este sitio web</h4>
+      <p class="legal-sub">Cookies controladas por el editor · Técnicas y funcionales</p>
+      <div class="legal-table-wrap">
+        <table class="legal-table">
+          <thead><tr><th>Propiedad</th><th>Cookie</th><th>Finalidad</th><th>Plazo</th></tr></thead>
+          <tbody>
+            {technical.map(([prop, name, purpose, term]) => (
+              <tr><td>{prop}</td><td>{name}</td><td>{purpose}</td><td>{term}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="legal-sub">Publicitarias</p>
+      <div class="legal-table-wrap">
+        <table class="legal-table">
+          <thead><tr><th>Propiedad</th><th>Cookie</th><th>Finalidad</th><th>Plazo</th></tr></thead>
+          <tbody>
+            {advertising.map(([prop, name, purpose, term]) => (
+              <tr><td>{prop}</td><td>{name}</td><td>{purpose}</td><td>{term}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Cookies de terceros</h4>
+      <p>Los servicios de terceros son ajenos al control del editor. Los proveedores pueden modificar en todo momento sus condiciones de servicio, finalidad y utilización de las cookies, etc.</p>
+      <p>Proveedores externos de este sitio web:</p>
+      <div class="legal-table-wrap">
+        <table class="legal-table">
+          <thead><tr><th>Editor</th><th>Política de privacidad</th></tr></thead>
+          <tbody>
+            <tr><td>Google</td><td><a href="https://privacy.google.com/take-control.html" target="_blank" rel="noopener">privacy.google.com/take-control.html</a></td></tr>
+            <tr><td>Google</td><td><a href="https://safety.google/privacy/privacy-controls/" target="_blank" rel="noopener">safety.google/privacy/privacy-controls/</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Panel de configuración de cookies</h4>
+      <p>Desde este panel podrá configurar las cookies que el sitio web puede instalar en su navegador, excepto las cookies técnicas o funcionales que son necesarias para la navegación y la utilización de las diferentes opciones o servicios que se ofrecen.</p>
+      <p><a href="#" class="btn btn-primary pdcc-open-modal">{L.legal.panel}</a></p>
+
+      <h4>Cómo gestionar las cookies desde el navegador</h4>
+      <ul>
+        <li><strong>Eliminar las cookies del dispositivo:</strong> las cookies que ya están en un dispositivo se pueden eliminar borrando el historial del navegador, con lo que se suprimen las cookies de todos los sitios web visitados. Sin embargo, también se puede perder parte de la información guardada (por ejemplo, los datos de inicio de sesión o las preferencias de sitio web).</li>
+        <li><strong>Gestionar las cookies específicas del sitio:</strong> para tener un control más preciso de las cookies específicas de cada sitio, los usuarios pueden ajustar su configuración de privacidad y cookies en el navegador.</li>
+        <li><strong>Bloquear las cookies:</strong> aunque la mayoría de los navegadores modernos se pueden configurar para evitar que se instalen cookies en los dispositivos, eso puede obligar al ajuste manual de determinadas preferencias cada vez que se visite un sitio o página. Además, algunos servicios y características pueden no funcionar correctamente (por ejemplo, los inicios de sesión con perfil).</li>
+      </ul>
+      <p class="legal-sub">Cómo eliminar las cookies de los navegadores más comunes</p>
+      <ul class="legal-browsers">
+        {browsers.map(([name, url]) => (
+          <li><strong>{name}</strong> <a href={url} target="_blank" rel="noopener">{url}</a></li>
+        ))}
+      </ul>
+    </article>
+
+    <p class="legal-back"><a href={r.home}>← {L.nav.home}</a></p>
+  </div>
+</section>
+
+<style>
+  .legal { padding-top: clamp(30px, 5vw, 50px); }
+  .legal-index { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: clamp(30px, 5vw, 46px); }
+  .legal-index a { border: 1px solid var(--line); border-radius: 999px; padding: 9px 18px; font-size: .9rem; font-weight: 600; color: var(--heading); background: #fff; transition: background .2s, color .2s, border-color .2s; }
+  .legal-index a:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+  /* Documento legal: columna estrecha y tipografía pequeña, es texto de lectura densa. */
+  .legal-doc { max-width: 860px; margin: 0 auto clamp(40px, 6vw, 64px); scroll-margin-top: 90px; }
+  .legal-doc h3 { font-size: clamp(1.4rem, 3.4vw, 1.9rem); color: var(--heading); margin-bottom: .3em; }
+  .legal-doc h3::after { content: ''; display: block; width: 60px; height: 3px; background: var(--blue); border-radius: 2px; margin-top: .5rem; }
+  .legal-doc h4 { font-size: 1.05rem; color: var(--heading); margin: 1.8em 0 .6em; }
+  .legal-doc p, .legal-doc li { font-size: .92rem; line-height: 1.7; }
+  .legal-doc p { margin-bottom: .9em; }
+  .legal-doc ul { margin: 0 0 1em 1.1em; }
+  .legal-doc li { margin-bottom: .5em; }
+  .legal-doc a { color: var(--blue); text-decoration: underline; word-break: break-word; }
+  .legal-law { font-weight: 700; color: var(--heading); text-transform: uppercase; font-size: .85rem !important; letter-spacing: .02em; }
+  .legal-sub { font-weight: 700; color: var(--heading); margin-bottom: .4em !important; }
+  .legal-data { list-style: none; margin-left: 0 !important; }
+  .legal-data span { font-weight: 600; color: var(--heading); }
+  .legal-browsers { list-style: none; margin-left: 0 !important; }
+  /* Las tablas de cookies son anchas: scroll propio para no romper el móvil. */
+  .legal-table-wrap { overflow-x: auto; margin-bottom: 1.4em; -webkit-overflow-scrolling: touch; }
+  .legal-table { border-collapse: collapse; width: 100%; min-width: 600px; font-size: .82rem; }
+  .legal-table th, .legal-table td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .legal-table th { background: var(--bg-soft); color: var(--heading); }
+  .legal-table a { word-break: break-all; }
+  .legal-back { text-align: center; }
+  .legal-back a { color: var(--blue); font-weight: 600; }
+</style>

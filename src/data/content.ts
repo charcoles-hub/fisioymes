@@ -6,8 +6,23 @@ const B = import.meta.env.BASE_URL;
 
 // Slugs de cada página por idioma (rutas estáticas → buen SEO local).
 export const routes: Record<Lang, Record<string, string>> = {
-  ca: { home: B, treatments: B + 'tractaments/', team: B + 'equip/', clinic: B + 'la-clinica/', prices: B + 'tarifes/', booking: B + 'reservar-cites/' },
-  es: { home: B + 'es/', treatments: B + 'es/tratamientos/', team: B + 'es/equipo/', clinic: B + 'es/la-clinica/', prices: B + 'es/tarifas/', booking: B + 'es/reservar-citas/' },
+  ca: { home: B, treatments: B + 'tractaments/', team: B + 'equip/', clinic: B + 'la-clinica/', prices: B + 'tarifes/', booking: B + 'reservar-cites/', legal: B + 'avisos-legals/' },
+  es: { home: B + 'es/', treatments: B + 'es/tratamientos/', team: B + 'es/equipo/', clinic: B + 'es/la-clinica/', prices: B + 'es/tarifas/', booking: B + 'es/reservar-citas/', legal: B + 'es/avisos-legales/' },
+};
+
+// Consentimiento del formulario (1.ª capa, LOPDGDD). Texto literal de la asesoría del cliente:
+// se muestra igual en las dos versiones del sitio, no se traduce.
+export const consent = {
+  heading: 'PROTECCIÓN DE DATOS:',
+  intro: 'De conformidad con las normativas de protección de datos, le facilitamos la siguiente información del tratamiento:',
+  items: [
+    'Responsable: FISIOYMES READEP S.L.P.',
+    'Fines del tratamiento: mantener una relación comercial y enviar comunicaciones de productos o servicios',
+    'Derechos que le asisten: acceso, rectificación, portabilidad, supresión, limitación y oposición',
+  ],
+  more: 'Más información del tratamiento en la',
+  moreLink: 'Política de privacidad',
+  check: 'Acepto el tratamiento de mis datos para el envío de comunicaciones de productos o servicios',
 };
 
 export const t = {
@@ -60,7 +75,7 @@ export const t = {
       or: 'o', prefer: 'Prefereixes reservar directament?',
     },
     footer: { hours: 'Horari', closed: 'Tancat', follow: 'Segueix-nos', rights: 'Tots els drets reservats.', tagline: 'Fisioteràpia esportiva · Pilates · Massatge terapèutic' },
-    cookies: { text: 'Utilitzem cookies pròpies i de tercers per millorar la teva experiència i analitzar la navegació. En continuar navegant acceptes la nostra política de privacitat i l’ús de cookies.', accept: 'D’acord' },
+    legal: { title: 'Avisos legals', subtitle: 'Avís legal, política de privacitat i política de cookies de FISIOYMES READEP S.L.P. Textos facilitats en castellà per l’assessoria del centre i publicats de manera literal.', notice: 'Avís legal', privacy: 'Política de privacitat', cookies: 'Política de cookies', panel: 'Panell de cookies' },
     days: ['Dilluns','Dimarts','Dimecres','Dijous','Divendres','Dissabte','Diumenge'],
     pages: {
       treatments: { title: 'Els nostres tractaments', subtitle: 'Teràpia manual i tecnologia avançada per reduir al màxim els temps de recuperació.' },
@@ -134,7 +149,7 @@ export const t = {
       or: 'o', prefer: '¿Prefieres reservar directamente?',
     },
     footer: { hours: 'Horario', closed: 'Cerrado', follow: 'Síguenos', rights: 'Todos los derechos reservados.', tagline: 'Fisioterapia deportiva · Pilates · Masaje terapéutico' },
-    cookies: { text: 'Utilizamos cookies propias y de terceros para mejorar tu experiencia y analizar la navegación. Al continuar navegando aceptas nuestra política de privacidad y el uso de cookies.', accept: 'De acuerdo' },
+    legal: { title: 'Avisos legales', subtitle: 'Aviso legal, política de privacidad y política de cookies de FISIOYMES READEP S.L.P., según los textos facilitados por la asesoría del centro.', notice: 'Aviso legal', privacy: 'Política de privacidad', cookies: 'Política de cookies', panel: 'Panel de cookies' },
     days: ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'],
     pages: {
       treatments: { title: 'Nuestros tratamientos', subtitle: 'Terapia manual y tecnología avanzada para reducir al máximo los tiempos de recuperación.' },
