@@ -4,7 +4,7 @@ export type Lang = 'ca' | 'es';
 // Prefijo base del despliegue (p.ej. '/fisioymes/' en GitHub Pages, '/' en dominio propio).
 const B = import.meta.env.BASE_URL;
 
-// Estilo caligráfico (Parisienne) en los títulos: envuelve una palabra clave en <span class="calli">.
+// Estilo caligráfico (Dancing Script) en los títulos: envuelve una palabra clave en <span class="calli">.
 // Por defecto la última palabra del título; overrides para los que no encajan ahí.
 const calliOverride: Record<string, string> = {
   'Lesions més freqüents que tractem': 'Lesions',
