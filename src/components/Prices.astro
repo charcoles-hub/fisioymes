@@ -1,5 +1,5 @@
 ---
-import { routes, t, pricesTables, type Lang } from '../data/content';
+import { routes, t, pricesTables, calliTitle, type Lang } from '../data/content';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const L = t[lang];
@@ -11,7 +11,7 @@ const tables = pricesTables[lang];
   <img class="price-side right" src={import.meta.env.BASE_URL + 'assets/clinic-mostrador.webp'} alt="" aria-hidden="true" loading="lazy" />
   <div class="wrap">
     <div class="section-head">
-      <h2>{L.pages.prices.title}</h2>
+      <h2 set:html={calliTitle(L.pages.prices.title)} />
       <p>{L.pages.prices.subtitle}</p>
     </div>
     <div class="price-grid">
@@ -40,7 +40,7 @@ const tables = pricesTables[lang];
 <section class="section-soft insurance-section">
   <div class="wrap">
     <div class="section-head">
-      <h2>{L.pages.prices.insurance.title}</h2>
+      <h2 set:html={calliTitle(L.pages.prices.insurance.title)} />
       <p>{L.pages.prices.insurance.subtitle}</p>
     </div>
     <div class="insurance-text">

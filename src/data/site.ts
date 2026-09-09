@@ -12,7 +12,7 @@ export const site = {
   instagram: 'https://www.instagram.com/fisioymes/',
   bookingUrl: 'https://app.clinic-cloud.com/citaonline.php/fisioymes',
   googleRating: '5.0',
-  googleReviews: 117,
+  googleReviews: 120,
 } as const;
 
 // Menú: [slug relativo al idioma, clave de etiqueta]

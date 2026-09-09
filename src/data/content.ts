@@ -4,6 +4,23 @@ export type Lang = 'ca' | 'es';
 // Prefijo base del despliegue (p.ej. '/fisioymes/' en GitHub Pages, '/' en dominio propio).
 const B = import.meta.env.BASE_URL;
 
+// Estilo caligráfico (Parisienne) en los títulos: envuelve una palabra clave en <span class="calli">.
+// Por defecto la última palabra del título; overrides para los que no encajan ahí.
+const calliOverride: Record<string, string> = {
+  'Lesions més freqüents que tractem': 'Lesions',
+  'Lesiones más frecuentes que tratamos': 'Lesiones',
+  'Tens una mútua amb reemborsament?': 'mútua',
+  '¿Tienes una mutua con reembolso?': 'mutua',
+  'Avisos legals': 'Avisos',
+  'Avisos legales': 'Avisos',
+};
+export function calliTitle(s: string): string {
+  const word = calliOverride[s] ?? s.split(' ').pop()!;
+  const i = s.indexOf(word);
+  if (i < 0) return s;
+  return s.slice(0, i) + '<span class="calli">' + word + '</span>' + s.slice(i + word.length);
+}
+
 // Slugs de cada página por idioma (rutas estáticas → buen SEO local).
 export const routes: Record<Lang, Record<string, string>> = {
   ca: { home: B, treatments: B + 'tractaments/', team: B + 'equip/', clinic: B + 'la-clinica/', prices: B + 'tarifes/', booking: B + 'reservar-cites/', legal: B + 'avisos-legals/' },

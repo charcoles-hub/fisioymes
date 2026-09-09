@@ -1,5 +1,5 @@
 ---
-import { routes, t, clinicText, clinicGallery, type Lang } from '../data/content';
+import { routes, t, clinicText, clinicGallery, calliTitle, type Lang } from '../data/content';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const L = t[lang];
@@ -13,7 +13,7 @@ const base = import.meta.env.BASE_URL;
   <img class="clinic-side right" src={base + 'assets/clinic-mostrador.webp'} alt="" aria-hidden="true" loading="lazy" />
   <div class="wrap">
     <div class="section-head">
-      <h2>{L.pages.clinic.title}</h2>
+      <h2 set:html={calliTitle(L.pages.clinic.title)} />
       <p>{L.pages.clinic.subtitle}</p>
     </div>
     <div class="clinic-text">
@@ -25,7 +25,7 @@ const base = import.meta.env.BASE_URL;
 <section class="section-soft">
   <div class="wrap">
     <div class="section-head">
-      <h2>{L.pages.clinic.galleryTitle}</h2>
+      <h2 set:html={calliTitle(L.pages.clinic.galleryTitle)} />
     </div>
     <div class="clinic-grid">
       {gallery.map(g => (

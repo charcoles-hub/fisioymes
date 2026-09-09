@@ -1,5 +1,5 @@
 ---
-import { t, teamList, type Lang } from '../data/content';
+import { t, teamList, calliTitle, type Lang } from '../data/content';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const L = t[lang];
@@ -11,7 +11,7 @@ const base = import.meta.env.BASE_URL;
   <img class="team-side right" src={base + 'assets/clinic-mostrador.webp'} alt="" aria-hidden="true" loading="lazy" />
   <div class="wrap">
     <div class="section-head">
-      <h2>{L.pages.team.title}</h2>
+      <h2 set:html={calliTitle(L.pages.team.title)} />
       <p>{L.pages.team.intro}</p>
     </div>
     <div class="team-grid">

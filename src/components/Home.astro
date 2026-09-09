@@ -1,6 +1,6 @@
 ---
 import { site } from '../data/site';
-import { routes, t, testimonials, consent, type Lang } from '../data/content';
+import { routes, t, testimonials, consent, calliTitle, type Lang } from '../data/content';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const L = t[lang];
@@ -43,7 +43,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
       };
       const noAuto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const stopAuto = () => clearInterval(auto);
-      const startAuto = () => { if (!noAuto) auto = setInterval(() => goTo(current + 1), 8000); };
+      const startAuto = () => { if (!noAuto) auto = setInterval(() => goTo(current + 1), 13000); };
       // Tras interacción reinicia el temporizador (no lo detiene): sigue en automático
       const restartAuto = () => { stopAuto(); startAuto(); };
       dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); restartAuto(); }));
@@ -72,7 +72,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
       goTo(0);
     }
   </script>
-  <h1 class="wrap hero-title">{L.hero.title}</h1>
+  <h1 class="wrap hero-title" set:html={calliTitle(L.hero.title)} />
   <div class="wrap hero-in">
     <p class="hero-text">{L.hero.text}</p>
     <div class="hero-rating">
@@ -90,7 +90,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
 <section class="section-soft">
   <div class="wrap">
     <div class="section-head">
-      <h2>{L.lesions.title}</h2>
+      <h2 set:html={calliTitle(L.lesions.title)} />
       <p>{L.lesions.subtitle}</p>
     </div>
     <input type="checkbox" id="more-lesions" class="more-toggle" hidden />
@@ -114,7 +114,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
 <section>
   <div class="wrap">
     <div class="section-head">
-      <h2>{L.treatments.title}</h2>
+      <h2 set:html={calliTitle(L.treatments.title)} />
       <p>{L.treatments.subtitle}</p>
     </div>
     <div class="tx-grid">
@@ -147,7 +147,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
 <section class="section-soft">
   <div class="wrap">
     <div class="section-head">
-      <h2>{L.testimonials.title}</h2>
+      <h2 set:html={calliTitle(L.testimonials.title)} />
       <p>{L.testimonials.subtitle}</p>
     </div>
     <div class="rev-badge">
@@ -179,7 +179,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
 <section id="contacte">
   <div class="wrap contact-grid">
     <div class="contact-info">
-      <h2>{L.contact.title}</h2>
+      <h2 set:html={calliTitle(L.contact.title)} />
       <p class="contact-text">{L.contact.text}</p>
       <ul class="contact-list">
         <li><a href={site.phoneHref}>{site.phone}</a></li>

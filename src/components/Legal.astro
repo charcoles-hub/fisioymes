@@ -2,7 +2,7 @@
 // Textos legales facilitados por la asesoría del cliente (PDF "FISIOYMES_READEP_SLP_Internet", 08/2026).
 // Se publican LITERALES y en castellano en las dos versiones del sitio: son documentos jurídicos
 // aprobados por su asesor, no se traducen ni se reescriben.
-import { routes, t, type Lang } from '../data/content';
+import { routes, t, calliTitle, type Lang } from '../data/content';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const L = t[lang];
@@ -46,7 +46,7 @@ const browsers = [
 <section class="section legal">
   <div class="wrap">
     <div class="section-head">
-      <h2>{L.legal.title}</h2>
+      <h2 set:html={calliTitle(L.legal.title)} />
       <p>{L.legal.subtitle}</p>
     </div>
 

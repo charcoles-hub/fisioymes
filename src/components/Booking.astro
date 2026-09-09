@@ -1,6 +1,6 @@
 ---
 import { site } from '../data/site';
-import { t, type Lang } from '../data/content';
+import { t, calliTitle, type Lang } from '../data/content';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const L = t[lang];
@@ -12,7 +12,7 @@ const base = import.meta.env.BASE_URL;
   <img class="booking-side right" src={base + 'assets/clinic-mostrador.webp'} alt="" aria-hidden="true" loading="lazy" />
   <div class="wrap">
     <div class="section-head">
-      <h2>{L.pages.booking.title}</h2>
+      <h2 set:html={calliTitle(L.pages.booking.title)} />
       <p>{L.pages.booking.text}</p>
     </div>
     <div class="booking-box">
