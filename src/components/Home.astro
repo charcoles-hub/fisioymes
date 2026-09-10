@@ -137,7 +137,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
 
 <!-- BANDA RESERVA -->
 <section class="band">
-  <img class="band-photo" src={base + 'assets/band-reservas.webp'} alt="" aria-hidden="true" loading="lazy" width="1920" height="1200" />
+  <img class="band-photo" src={base + 'assets/band-reservas.webp'} alt="" aria-hidden="true" loading="lazy" width="2000" height="1376" />
   <div class="wrap band-in">
     <div class="band-text">
       <h2>{L.cta.book}</h2>
@@ -312,7 +312,7 @@ const initial = (name: string) => name.trim().charAt(0).toUpperCase();
 
   /* BANDA */
   .band { position: relative; overflow: hidden; background: linear-gradient(105deg, var(--blue) 0%, var(--blue-dd) 100%); color: #fff; }
-  .band-photo { position: absolute; top: 0; right: 0; height: 100%; width: 58%; object-fit: cover; object-position: center 30%; z-index: 0; }
+  .band-photo { position: absolute; top: 0; right: 0; height: 100%; width: 58%; object-fit: cover; object-position: center 42%; z-index: 0; }
   /* velo azul: tiñe la foto y la funde con el degradado de la izquierda */
   .band::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(100deg, var(--blue-dd) 0%, var(--blue-dd) 30%, rgba(15,92,158,.86) 46%, rgba(46,163,242,.44) 72%, rgba(46,163,242,.28) 100%); }
   .band-in { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
