@@ -1,0 +1,106 @@
+---
+import { t, routes, classSchedule, calliTitle, type Lang } from '../data/content';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const L = t[lang];
+const r = routes[lang];
+const C = L.pages.classes;
+const weekdays = L.days.slice(0, 5);
+const cols = [0, 1, 2, 3, 4];
+---
+<section class="cls-intro">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 set:html={calliTitle(C.title)} />
+      <p>{C.subtitle}</p>
+    </div>
+  </div>
+</section>
+
+{C.items.map((cl, i) => (
+  <section class={`cls-row ${i % 2 ? 'is-alt' : ''}`}>
+    <div class="wrap cls-grid">
+      <div class="cls-media">
+        <img src={cl.img} alt={cl.name} loading="lazy" width="640" height="480" />
+      </div>
+      <div class="cls-body">
+        <h3>{cl.name}</h3>
+        {cl.paras.map(p => <p>{p}</p>)}
+        <p class="cls-sched-label">{C.scheduleLabel}</p>
+        <ul class="cls-sched">
+          {cl.schedule.map(s => <li>{s}</li>)}
+        </ul>
+        <a href={r.booking} class="btn cls-cta">{C.cta}</a>
+      </div>
+    </div>
+  </section>
+))}
+
+<section class="cls-cal">
+  <div class="wrap">
+    <div class="section-head"><h2 set:html={calliTitle(C.calendarTitle)} /></div>
+    <div class="cls-cal-scroll">
+      <table class="cls-cal-table">
+        <thead>
+          <tr>
+            <th class="cls-cal-hour">Hora</th>
+            {weekdays.map(d => <th>{d}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {classSchedule.hours.map(h => (
+            <tr>
+              <th scope="row" class="cls-cal-hour">{h}</th>
+              {cols.map(day => {
+                const key = classSchedule.cells[h]?.[day];
+                const kind = key ? classSchedule.kinds[key] : null;
+                return <td>{kind && <span class={`cls-pill tone-${kind.tone}`}>{kind.label}</span>}</td>;
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="cls-cal-note">{C.calendarNote}</p>
+    <div class="cls-cal-cta"><a href={r.booking} class="btn btn-primary">{C.cta}</a></div>
+  </div>
+</section>
+
+<style>
+  .cls-intro { padding-bottom: 0; }
+
+  /* Filas alternas foto / texto, como en la referencia */
+  .cls-row { background: #fff; }
+  .cls-row.is-alt { background: var(--bg-soft); }
+  .cls-row:first-of-type { padding-top: clamp(24px, 4vw, 40px); }
+  .cls-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .cls-media { border-radius: 18px; overflow: hidden; box-shadow: 0 14px 40px rgba(20,50,80,.14); }
+  .cls-media img { display: block; width: 100%; aspect-ratio: 3/2; height: auto; object-fit: cover; }
+  .cls-row.is-alt .cls-media { order: 2; }
+  .cls-body h3 { color: var(--blue-dd); font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: .5em; }
+  .cls-body p { color: var(--muted); margin: 0 0 .8em; font-size: .96rem; }
+  .cls-sched-label { color: var(--ink); font-weight: 700; font-family: 'Montserrat', sans-serif; margin: 1.1em 0 .3em; }
+  .cls-sched { list-style: none; padding: 0; margin: 0 0 1.4em; display: flex; flex-wrap: wrap; gap: 8px; }
+  .cls-sched li { background: #eaf4fb; color: var(--blue-dd); font-size: .86rem; font-weight: 600; padding: 6px 12px; border-radius: 999px; }
+  .cls-cta { background: transparent; color: var(--blue-d); border: 2px solid var(--blue); }
+  .cls-cta:hover { background: var(--blue); color: #fff; transform: translateY(-2px); }
+  @media (max-width: 860px) {
+    .cls-grid { grid-template-columns: 1fr; gap: 22px; }
+    .cls-row .cls-media, .cls-row.is-alt .cls-media { order: -1; }
+  }
+
+  /* Calendario semanal */
+  .cls-cal { background: linear-gradient(125deg, #d7e8f6 0%, #e7f1fb 50%, var(--bg-soft) 100%); }
+  .cls-cal-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 16px; }
+  .cls-cal-table { width: 100%; border-collapse: separate; border-spacing: 6px; min-width: 620px; }
+  .cls-cal-table th { font-family: 'Montserrat', sans-serif; }
+  .cls-cal-table thead th { background: var(--blue-dd); color: #fff; font-size: .82rem; letter-spacing: .04em; text-transform: uppercase; padding: 12px 10px; border-radius: 10px; }
+  .cls-cal-hour { background: #e2ecf5; color: var(--heading); font-size: .82rem; font-weight: 700; padding: 10px; border-radius: 10px; white-space: nowrap; }
+  .cls-cal-table td { background: #eef4f9; border-radius: 10px; height: 46px; text-align: center; vertical-align: middle; padding: 4px; }
+  .cls-pill { display: inline-block; font-size: .78rem; font-weight: 700; font-family: 'Montserrat', sans-serif; padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+  .cls-pill.tone-soft { background: #bfe0f5; color: #0c3357; }
+  .cls-pill.tone-strong { background: var(--blue-dd); color: #fff; }
+  .cls-pill.tone-grey { background: #d5dde4; color: #34424e; }
+  .cls-cal-note { text-align: center; color: var(--muted); font-size: .9rem; margin: 20px 0 0; }
+  .cls-cal-cta { text-align: center; margin-top: 22px; }
+</style>

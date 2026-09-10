@@ -16,4 +16,4 @@ export const site = {
 } as const;
 
 // Menú: [slug relativo al idioma, clave de etiqueta]
-export const navKeys = ['home', 'treatments', 'team', 'clinic', 'prices', 'booking'] as const;
+export const navKeys = ['home', 'treatments', 'team', 'clinic', 'prices', 'classes', 'booking'] as const;

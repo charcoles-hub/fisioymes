@@ -23,8 +23,28 @@ export function calliTitle(s: string): string {
 
 // Slugs de cada página por idioma (rutas estáticas → buen SEO local).
 export const routes: Record<Lang, Record<string, string>> = {
-  ca: { home: B, treatments: B + 'tractaments/', team: B + 'equip/', clinic: B + 'la-clinica/', prices: B + 'tarifes/', booking: B + 'reservar-cites/', legal: B + 'avisos-legals/' },
-  es: { home: B + 'es/', treatments: B + 'es/tratamientos/', team: B + 'es/equipo/', clinic: B + 'es/la-clinica/', prices: B + 'es/tarifas/', booking: B + 'es/reservar-citas/', legal: B + 'es/avisos-legales/' },
+  ca: { home: B, treatments: B + 'tractaments/', team: B + 'equip/', clinic: B + 'la-clinica/', prices: B + 'tarifes/', classes: B + 'classes-dirigides/', booking: B + 'reservar-cites/', legal: B + 'avisos-legals/' },
+  es: { home: B + 'es/', treatments: B + 'es/tratamientos/', team: B + 'es/equipo/', clinic: B + 'es/la-clinica/', prices: B + 'es/tarifas/', classes: B + 'es/clases-dirigidas/', booking: B + 'es/reservar-citas/', legal: B + 'es/avisos-legales/' },
+};
+
+// Calendari setmanal de classes dirigides (igual en CA i ES; els noms de classe no es tradueixen).
+// dies: 0 = Dilluns … 4 = Divendres. Cada cel·la referencia una clau de `classKinds`.
+export const classSchedule = {
+  hours: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'],
+  kinds: {
+    pilates: { label: 'Pilates', tone: 'soft' },
+    forca: { label: 'Força ++', tone: 'strong' },
+    reactivat: { label: "Reactiva't", tone: 'grey' },
+  } as Record<string, { label: string; tone: 'soft' | 'strong' | 'grey' }>,
+  // [hora]: { dia: clau }
+  cells: {
+    '09:00': { 1: 'pilates' },
+    '10:00': { 1: 'pilates', 4: 'pilates' },
+    '12:00': { 4: 'forca' },
+    '13:00': { 2: 'reactivat' },
+    '18:00': { 0: 'pilates', 1: 'forca', 2: 'pilates', 3: 'pilates' },
+    '19:00': { 0: 'pilates', 3: 'pilates' },
+  } as Record<string, Record<number, string>>,
 };
 
 // Consentimiento del formulario (1.ª capa, LOPDGDD). Texto literal de la asesoría del cliente:
@@ -46,7 +66,7 @@ export const t = {
   ca: {
     langName: 'CA',
     other: { code: 'es', name: 'ES' },
-    nav: { home: 'Inici', treatments: 'Tractaments', team: 'Equip', clinic: 'La Clínica', prices: 'Tarifes', booking: 'Reservar Cita' },
+    nav: { home: 'Inici', treatments: 'Tractaments', team: 'Equip', clinic: 'La Clínica', prices: 'Tarifes', classes: 'Classes', booking: 'Reservar Cita' },
     cta: { book: 'Reservar cita', contact: 'Contacte', whatsapp: 'Contacta per WhatsApp', seeTreatments: 'Veure tractaments', callUs: 'Truca’ns', seePrices: 'Veure tarifes', readMore: 'Veure més', zoom: 'Ampliar imatge:', close: 'Tancar' },
     hero: {
       title: 'Benvingut/da a Fisioymés',
@@ -115,12 +135,55 @@ export const t = {
         },
       },
       booking: { title: 'Reservar cita', text: 'Reserva la teva cita online en menys d’un minut, quan et vagi bé.', fallback: 'Si no veus el sistema de reserva, obre’l aquí', phoneAlt: 'o truca’ns al' },
+      classes: {
+        title: 'Classes dirigides',
+        subtitle: 'Entrena en grups reduïts i sempre supervisat per fisioterapeutes. Adaptem cada sessió al teu nivell perquè progressis de manera segura.',
+        scheduleLabel: 'Horari',
+        calendarTitle: 'Horari setmanal',
+        calendarNote: 'Places limitades. Consulta disponibilitat i reserva la teva plaça.',
+        cta: 'Reserva la teva plaça',
+        items: [
+          {
+            name: 'Força ++',
+            img: B + 'assets/class-forca.webp',
+            paras: [
+              'Les nostres classes de força estan pensades per a persones que volen mantenir-se actives, guanyar força i millorar la seva condició física d’una manera segura, progressiva i supervisada per un fisioterapeuta.',
+              'Treballem en grups reduïts, fet que ens permet adaptar els exercicis al nivell i les capacitats de cada persona, controlar-ne l’execució i garantir una progressió adequada. Les sessions combinen força, estabilitat, equilibri, coordinació i mobilitat amb un treball dinàmic i funcional.',
+              'L’entrenament es fa principalment en format circuit, alternant estacions de treball per exercitar de manera global les extremitats superiors i inferiors, el core i el sistema cardiovascular.',
+              'Ideals tant per començar a entrenar amb seguretat com per mantenir o millorar la força, prevenir la pèrdua de massa muscular i conservar una bona capacitat funcional amb el pas dels anys.',
+            ],
+            schedule: ['Dimarts 18:00', 'Divendres 12:00'],
+          },
+          {
+            name: 'Pilates terapèutic',
+            img: B + 'assets/class-pilates.webp',
+            paras: [
+              'Les sessions de Pilates terapèutic s’enfoquen a millorar la teva mobilitat, força i control corporal amb exercicis adaptats a les teves necessitats i capacitats. Treballem de manera progressiva i supervisada, perquè cada moviment es faci de forma segura, conscient i eficaç.',
+              'Amb exercicis específics treballem la força, la mobilitat, l’estabilitat, el control postural, la coordinació i la respiració, parant especial atenció a la musculatura profunda de l’abdomen i a una correcta alineació corporal.',
+              'Especialment indicat per a persones amb dolor d’esquena, molèsties cervicals o lumbars, alteracions posturals, pèrdua de mobilitat o debilitat muscular, i per a qui vol prevenir lesions o completar una fase de recuperació.',
+              'Les sessions estan supervisades per fisioterapeutes, que adapten els exercicis i la intensitat segons les necessitats, limitacions i evolució de cada persona.',
+            ],
+            schedule: ['Dilluns 18:00 i 19:00', 'Dimarts 09:00, 10:00 i 18:00', 'Dimecres 18:00', 'Dijous 18:00 i 19:00', 'Divendres 10:00'],
+          },
+          {
+            name: 'Entrenament personal',
+            img: B + 'assets/class-entrenament.webp',
+            paras: [
+              'Les sessions d’entrenament personal estan pensades per oferir-te un treball completament individualitzat, adaptat a la teva condició física, les teves necessitats i els objectius que vulguis assolir.',
+              'Amb una planificació progressiva i supervisada treballem la força, la resistència, la mobilitat, la coordinació i l’equilibri, parant especial atenció a la correcta execució de cada exercici.',
+              'Cada sessió es planteja específicament per a tu, ajustant exercicis, càrregues i intensitat segons la teva evolució, amb un seguiment professional continu que t’ajuda a mantenir la motivació i millorar la tècnica.',
+              'Una bona opció tant si vols millorar la condició física, guanyar força, reduir greix o augmentar el rendiment esportiu, com si simplement vols mantenir-te actiu entrenant de manera controlada i segura.',
+            ],
+            schedule: ['Sessions individuals amb cita prèvia'],
+          },
+        ],
+      },
     },
   },
   es: {
     langName: 'ES',
     other: { code: 'ca', name: 'CA' },
-    nav: { home: 'Inicio', treatments: 'Tratamientos', team: 'Equipo', clinic: 'La Clínica', prices: 'Tarifas', booking: 'Reservar Cita' },
+    nav: { home: 'Inicio', treatments: 'Tratamientos', team: 'Equipo', clinic: 'La Clínica', prices: 'Tarifas', classes: 'Clases', booking: 'Reservar Cita' },
     cta: { book: 'Reservar cita', contact: 'Contacto', whatsapp: 'Contacta por WhatsApp', seeTreatments: 'Ver tratamientos', callUs: 'Llámanos', seePrices: 'Ver tarifas', readMore: 'Ver más', zoom: 'Ampliar imagen:', close: 'Cerrar' },
     hero: {
       title: 'Bienvenido/a a Fisioymés',
@@ -189,6 +252,49 @@ export const t = {
         },
       },
       booking: { title: 'Reservar cita', text: 'Reserva tu cita online en menos de un minuto, cuando mejor te vaya.', fallback: 'Si no ves el sistema de reserva, ábrelo aquí', phoneAlt: 'o llámanos al' },
+      classes: {
+        title: 'Clases dirigidas',
+        subtitle: 'Entrena en grupos reducidos y siempre supervisado por fisioterapeutas. Adaptamos cada sesión a tu nivel para que progreses de forma segura.',
+        scheduleLabel: 'Horario',
+        calendarTitle: 'Horario semanal',
+        calendarNote: 'Plazas limitadas. Consulta disponibilidad y reserva tu plaza.',
+        cta: 'Reserva tu plaza',
+        items: [
+          {
+            name: 'Fuerza ++',
+            img: B + 'assets/class-forca.webp',
+            paras: [
+              'Nuestras clases de fuerza están pensadas para personas que quieren mantenerse activas, ganar fuerza y mejorar su condición física de una manera segura, progresiva y supervisada por un fisioterapeuta.',
+              'Trabajamos en grupos reducidos, lo que nos permite adaptar los ejercicios al nivel y las capacidades de cada persona, controlar su ejecución y garantizar una progresión adecuada. Las sesiones combinan fuerza, estabilidad, equilibrio, coordinación y movilidad con un trabajo dinámico y funcional.',
+              'El entrenamiento se realiza principalmente en formato circuito, alternando estaciones de trabajo para ejercitar de forma global las extremidades superiores e inferiores, el core y el sistema cardiovascular.',
+              'Ideales tanto para empezar a entrenar con seguridad como para mantener o mejorar la fuerza, prevenir la pérdida de masa muscular y conservar una buena capacidad funcional con el paso de los años.',
+            ],
+            schedule: ['Martes 18:00', 'Viernes 12:00'],
+          },
+          {
+            name: 'Pilates terapéutico',
+            img: B + 'assets/class-pilates.webp',
+            paras: [
+              'Nuestras sesiones de Pilates terapéutico están enfocadas a mejorar tu movilidad, fuerza y control corporal mediante ejercicios adaptados a tus necesidades y capacidades. Trabajamos de forma progresiva y supervisada, buscando que cada movimiento se realice de manera segura, consciente y eficaz.',
+              'A través de ejercicios específicos trabajamos la fuerza, la movilidad, la estabilidad, el control postural, la coordinación y la respiración, prestando especial atención a la musculatura profunda del abdomen y a una correcta alineación corporal.',
+              'Está especialmente indicado para personas con dolor de espalda, molestias cervicales o lumbares, alteraciones posturales, pérdida de movilidad o debilidad muscular, así como para quienes quieren prevenir lesiones o completar una fase de recuperación.',
+              'Las sesiones están supervisadas por fisioterapeutas, que adaptan los ejercicios y su intensidad según las necesidades, limitaciones y evolución de cada persona.',
+            ],
+            schedule: ['Lunes 18:00 y 19:00', 'Martes 09:00, 10:00 y 18:00', 'Miércoles 18:00', 'Jueves 18:00 y 19:00', 'Viernes 10:00'],
+          },
+          {
+            name: 'Entrenamiento personal',
+            img: B + 'assets/class-entrenament.webp',
+            paras: [
+              'Nuestras sesiones de entrenamiento personal están diseñadas para ofrecerte un trabajo completamente individualizado, adaptado a tu condición física, tus necesidades y los objetivos que quieras alcanzar.',
+              'A través de una planificación progresiva y supervisada trabajamos la fuerza, la resistencia, la movilidad, la coordinación y el equilibrio, prestando especial atención a la correcta ejecución de cada ejercicio.',
+              'Cada sesión se plantea específicamente para ti, ajustando ejercicios, cargas e intensidad en función de tu evolución, con un seguimiento profesional continuo que te ayuda a mantener la motivación y mejorar la técnica.',
+              'Una buena opción tanto si quieres mejorar la condición física, ganar fuerza, reducir grasa o aumentar el rendimiento deportivo, como si simplemente quieres mantenerte activo entrenando de forma controlada y segura.',
+            ],
+            schedule: ['Sesiones individuales con cita previa'],
+          },
+        ],
+      },
     },
   },
 } as const;
