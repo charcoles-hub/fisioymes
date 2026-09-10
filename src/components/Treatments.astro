@@ -6,8 +6,14 @@ const L = t[lang];
 const r = routes[lang];
 const items = treatmentsList[lang];
 const base = import.meta.env.BASE_URL;
+// Líneas fluidas decorativas: 14 curvas en abanico, arriba-izquierda.
+const fanLines = Array.from({ length: 14 }, (_, i) =>
+  `M -60 ${8 + i * 9} Q 150 ${300 + i * 5} 900 ${90 + i * 30}`);
 ---
-<section class="tx-section" style={`--fondo:url(${base}assets/fondo-fluid.webp);--foto:url(${base}assets/tract-fondo.webp)`}>
+<section class="tx-section" style={`--foto:url(${base}assets/tract-fondo.webp)`}>
+  <svg class="sec-lines" viewBox="0 0 840 470" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false">
+    {fanLines.map(d => <path d={d} />)}
+  </svg>
   <div class="wrap">
     <div class="section-head">
       <h2 set:html={calliTitle(L.pages.treatments.title)} />
@@ -29,13 +35,16 @@ const base = import.meta.env.BASE_URL;
 </section>
 
 <style>
-  .tx-section { position: relative; overflow: hidden; background: var(--bg-soft); }
+  .tx-section { position: relative; overflow: hidden; background: linear-gradient(125deg, #d7e8f6 0%, #e7f1fb 50%, var(--bg-soft) 100%); }
   .tx-section .wrap { position: relative; z-index: 1; }
-  /* fondo fluido azul (líneas suaves) sobre toda la sección */
-  .tx-section::before {
-    content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background: var(--fondo) no-repeat left top / cover; opacity: .8;
+  /* líneas fluidas (SVG, nítidas a cualquier tamaño) arriba-izquierda */
+  .sec-lines {
+    position: absolute; top: 0; left: 0; z-index: 0; pointer-events: none;
+    width: min(74%, 900px); height: min(85%, 660px);
+    -webkit-mask-image: linear-gradient(118deg, #000 25%, transparent 86%);
+            mask-image: linear-gradient(118deg, #000 25%, transparent 86%);
   }
+  .sec-lines path { fill: none; stroke: #fff; stroke-width: 1.7; opacity: .85; }
   /* foto de l'equip molt tènue, difuminada a la cantonada superior dreta */
   .tx-section::after {
     content: ''; position: absolute; top: 0; right: 0; z-index: 0; pointer-events: none;
