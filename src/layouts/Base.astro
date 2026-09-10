@@ -175,7 +175,7 @@ const waLink = `https://wa.me/${site.whatsapp}`;
   <script is:inline>
     (function () {
       if (!document.documentElement.classList.contains('js-reveal')) return; // reduced-motion o sin JS previo
-      var sel = '.section-head, .tx-card, .team-card, .price-card, .clinic-item, .clinic-text p, .rev, .lesion';
+      var sel = '.section-head, .tx-card, .team-card, .price-card, .clinic-item, .clinic-text p, .rev, .lesion, .cls-media, .cls-body, .cls-cal-scroll';
       function start() {
         var els = document.querySelectorAll(sel);
         // escalonado en cascada: retardo según la posición dentro de cada grupo (mismo contenedor)
@@ -319,11 +319,11 @@ const waLink = `https://wa.me/${site.whatsapp}`;
     .wa-fab::before { animation: wa-pulse 2.6s ease-out infinite; }
   }
   /* Revelado al scroll: se oculta por SELECTOR bajo .js-reveal (marcado en <head> antes del primer pintado → sin parpadeo). El observer añade .in. */
-  .js-reveal :is(.section-head, .tx-card, .team-card, .price-card, .clinic-item, .clinic-text p, .rev, .lesion) {
+  .js-reveal :is(.section-head, .tx-card, .team-card, .price-card, .clinic-item, .clinic-text p, .rev, .lesion, .cls-media, .cls-body, .cls-cal-scroll) {
     opacity: 0; transform: translateY(34px) scale(.982); filter: blur(8px);
     transition: opacity .7s ease, transform .9s cubic-bezier(.22,.61,.36,1), filter .8s ease;
   }
-  .js-reveal :is(.section-head, .tx-card, .team-card, .price-card, .clinic-item, .clinic-text p, .rev, .lesion).in {
+  .js-reveal :is(.section-head, .tx-card, .team-card, .price-card, .clinic-item, .clinic-text p, .rev, .lesion, .cls-media, .cls-body, .cls-cal-scroll).in {
     opacity: 1; transform: none; filter: none;
   }
   /* la barra de acento del título se dibuja al revelarse */
