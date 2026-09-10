@@ -6,9 +6,7 @@ const L = t[lang];
 const members = teamList[lang];
 const base = import.meta.env.BASE_URL;
 ---
-<section class="team-section">
-  <img class="team-side left" src={base + 'assets/clinic-recepcio.webp'} alt="" aria-hidden="true" loading="lazy" />
-  <img class="team-side right" src={base + 'assets/clinic-mostrador.webp'} alt="" aria-hidden="true" loading="lazy" />
+<section class="team-section" style={`--fondo:url(${base}assets/fondo-fluid.webp);--foto:url(${base}assets/equip-fondo.webp)`}>
   <div class="wrap">
     <div class="section-head">
       <h2 set:html={calliTitle(L.pages.team.title)} />
@@ -39,13 +37,22 @@ const base = import.meta.env.BASE_URL;
 </section>
 
 <style>
-  .team-section { position: relative; overflow: hidden; }
+  .team-section { position: relative; overflow: hidden; background: var(--bg-soft); }
   .team-section .wrap { position: relative; z-index: 1; }
-  /* ponytail: mismo tratamiento decorativo que Tarifes */
-  .team-side { position: absolute; top: 0; bottom: 0; width: clamp(190px, 22vw, 360px); height: 100%; object-fit: cover; pointer-events: none; }
-  .team-side.left { left: 0; opacity: .4; -webkit-mask-image: linear-gradient(90deg, #000 20%, transparent); mask-image: linear-gradient(90deg, #000 20%, transparent); }
-  .team-side.right { right: 0; opacity: .9; -webkit-mask-image: linear-gradient(270deg, #000 20%, transparent); mask-image: linear-gradient(270deg, #000 20%, transparent); }
-  @media (max-width: 1100px) { .team-side { display: none; } }
+  /* fondo fluido azul (líneas suaves) sobre toda la sección */
+  .team-section::before {
+    content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background: var(--fondo) no-repeat left top / cover; opacity: .8;
+  }
+  /* foto del equip molt tènue, difuminada a la cantonada superior dreta */
+  .team-section::after {
+    content: ''; position: absolute; top: 0; right: 0; z-index: 0; pointer-events: none;
+    width: min(54%, 700px); height: min(72%, 480px);
+    background: var(--foto) no-repeat center 28% / cover; opacity: .16;
+    -webkit-mask-image: linear-gradient(215deg, #000, rgba(0,0,0,.3) 48%, transparent 74%);
+            mask-image: linear-gradient(215deg, #000, rgba(0,0,0,.3) 48%, transparent 74%);
+  }
+  @media (max-width: 700px) { .team-section::after { display: none; } }
   .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
   .team-card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 6px 20px rgba(20,50,80,.06); display: flex; flex-direction: column; }
   .team-img { flex: 0 0 auto; }
