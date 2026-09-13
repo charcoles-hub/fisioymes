@@ -35,7 +35,7 @@ export const classSchedule = {
   afternoonFrom: '18:00',
   kinds: {
     pilates: { label: 'Pilates', tone: 'soft' },
-    forca: { label: 'Força ++', tone: 'strong' },
+    forca: { label: 'Força funcional', tone: 'strong' },
     reactivat: { label: "Reactiva't", tone: 'grey' },
   } as Record<string, { label: string; tone: 'soft' | 'strong' | 'grey' }>,
   // [hora]: { dia: clau }
@@ -157,7 +157,7 @@ export const t = {
             schedule: ['Dilluns 18:00 i 19:00', 'Dimarts 09:00, 10:00 i 18:00', 'Dimecres 18:00', 'Dijous 18:00 i 19:00', 'Divendres 10:00'],
           },
           {
-            name: 'Força ++',
+            name: 'Força funcional',
             img: B + 'assets/class-forca.webp',
             paras: [
               'Les nostres classes de força estan pensades per a persones que volen mantenir-se actives, guanyar força i millorar la seva condició física d’una manera segura, progressiva i supervisada per un fisioterapeuta.',
@@ -274,7 +274,7 @@ export const t = {
             schedule: ['Lunes 18:00 y 19:00', 'Martes 09:00, 10:00 y 18:00', 'Miércoles 18:00', 'Jueves 18:00 y 19:00', 'Viernes 10:00'],
           },
           {
-            name: 'Fuerza ++',
+            name: 'Fuerza funcional',
             img: B + 'assets/class-forca.webp',
             paras: [
               'Nuestras clases de fuerza están pensadas para personas que quieren mantenerse activas, ganar fuerza y mejorar su condición física de una manera segura, progresiva y supervisada por un fisioterapeuta.',
