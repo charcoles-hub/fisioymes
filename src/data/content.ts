@@ -30,7 +30,9 @@ export const routes: Record<Lang, Record<string, string>> = {
 // Calendari setmanal de classes dirigides (igual en CA i ES; els noms de classe no es tradueixen).
 // dies: 0 = Dilluns … 4 = Divendres. Cada cel·la referencia una clau de `classKinds`.
 export const classSchedule = {
-  hours: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'],
+  hours: ['09:00', '10:00', '12:00', '13:00', '18:00', '19:00'],
+  // Franja de tarda: la fila que obre el bloc de tarda porta un separador visual.
+  afternoonFrom: '18:00',
   kinds: {
     pilates: { label: 'Pilates', tone: 'soft' },
     forca: { label: 'Força ++', tone: 'strong' },
@@ -144,17 +146,6 @@ export const t = {
         cta: 'Reserva la teva plaça',
         items: [
           {
-            name: 'Força ++',
-            img: B + 'assets/class-forca.webp',
-            paras: [
-              'Les nostres classes de força estan pensades per a persones que volen mantenir-se actives, guanyar força i millorar la seva condició física d’una manera segura, progressiva i supervisada per un fisioterapeuta.',
-              'Treballem en grups reduïts, fet que ens permet adaptar els exercicis al nivell i les capacitats de cada persona, controlar-ne l’execució i garantir una progressió adequada. Les sessions combinen força, estabilitat, equilibri, coordinació i mobilitat amb un treball dinàmic i funcional.',
-              'L’entrenament es fa principalment en format circuit, alternant estacions de treball per exercitar de manera global les extremitats superiors i inferiors, el core i el sistema cardiovascular.',
-              'Ideals tant per començar a entrenar amb seguretat com per mantenir o millorar la força, prevenir la pèrdua de massa muscular i conservar una bona capacitat funcional amb el pas dels anys.',
-            ],
-            schedule: ['Dimarts 18:00', 'Divendres 12:00'],
-          },
-          {
             name: 'Pilates terapèutic',
             img: B + 'assets/class-pilates.webp',
             paras: [
@@ -164,6 +155,17 @@ export const t = {
               'Les sessions estan supervisades per fisioterapeutes, que adapten els exercicis i la intensitat segons les necessitats, limitacions i evolució de cada persona.',
             ],
             schedule: ['Dilluns 18:00 i 19:00', 'Dimarts 09:00, 10:00 i 18:00', 'Dimecres 18:00', 'Dijous 18:00 i 19:00', 'Divendres 10:00'],
+          },
+          {
+            name: 'Força ++',
+            img: B + 'assets/class-forca.webp',
+            paras: [
+              'Les nostres classes de força estan pensades per a persones que volen mantenir-se actives, guanyar força i millorar la seva condició física d’una manera segura, progressiva i supervisada per un fisioterapeuta.',
+              'Treballem en grups reduïts, fet que ens permet adaptar els exercicis al nivell i les capacitats de cada persona, controlar-ne l’execució i garantir una progressió adequada. Les sessions combinen força, estabilitat, equilibri, coordinació i mobilitat amb un treball dinàmic i funcional.',
+              'L’entrenament es fa principalment en format circuit, alternant estacions de treball per exercitar de manera global les extremitats superiors i inferiors, el core i el sistema cardiovascular.',
+              'Ideals tant per començar a entrenar amb seguretat com per mantenir o millorar la força, prevenir la pèrdua de massa muscular i conservar una bona capacitat funcional amb el pas dels anys.',
+            ],
+            schedule: ['Dimarts 18:00', 'Divendres 12:00'],
           },
           {
             name: 'Entrenament personal',
@@ -261,17 +263,6 @@ export const t = {
         cta: 'Reserva tu plaza',
         items: [
           {
-            name: 'Fuerza ++',
-            img: B + 'assets/class-forca.webp',
-            paras: [
-              'Nuestras clases de fuerza están pensadas para personas que quieren mantenerse activas, ganar fuerza y mejorar su condición física de una manera segura, progresiva y supervisada por un fisioterapeuta.',
-              'Trabajamos en grupos reducidos, lo que nos permite adaptar los ejercicios al nivel y las capacidades de cada persona, controlar su ejecución y garantizar una progresión adecuada. Las sesiones combinan fuerza, estabilidad, equilibrio, coordinación y movilidad con un trabajo dinámico y funcional.',
-              'El entrenamiento se realiza principalmente en formato circuito, alternando estaciones de trabajo para ejercitar de forma global las extremidades superiores e inferiores, el core y el sistema cardiovascular.',
-              'Ideales tanto para empezar a entrenar con seguridad como para mantener o mejorar la fuerza, prevenir la pérdida de masa muscular y conservar una buena capacidad funcional con el paso de los años.',
-            ],
-            schedule: ['Martes 18:00', 'Viernes 12:00'],
-          },
-          {
             name: 'Pilates terapéutico',
             img: B + 'assets/class-pilates.webp',
             paras: [
@@ -281,6 +272,17 @@ export const t = {
               'Las sesiones están supervisadas por fisioterapeutas, que adaptan los ejercicios y su intensidad según las necesidades, limitaciones y evolución de cada persona.',
             ],
             schedule: ['Lunes 18:00 y 19:00', 'Martes 09:00, 10:00 y 18:00', 'Miércoles 18:00', 'Jueves 18:00 y 19:00', 'Viernes 10:00'],
+          },
+          {
+            name: 'Fuerza ++',
+            img: B + 'assets/class-forca.webp',
+            paras: [
+              'Nuestras clases de fuerza están pensadas para personas que quieren mantenerse activas, ganar fuerza y mejorar su condición física de una manera segura, progresiva y supervisada por un fisioterapeuta.',
+              'Trabajamos en grupos reducidos, lo que nos permite adaptar los ejercicios al nivel y las capacidades de cada persona, controlar su ejecución y garantizar una progresión adecuada. Las sesiones combinan fuerza, estabilidad, equilibrio, coordinación y movilidad con un trabajo dinámico y funcional.',
+              'El entrenamiento se realiza principalmente en formato circuito, alternando estaciones de trabajo para ejercitar de forma global las extremidades superiores e inferiores, el core y el sistema cardiovascular.',
+              'Ideales tanto para empezar a entrenar con seguridad como para mantener o mejorar la fuerza, prevenir la pérdida de masa muscular y conservar una buena capacidad funcional con el paso de los años.',
+            ],
+            schedule: ['Martes 18:00', 'Viernes 12:00'],
           },
           {
             name: 'Entrenamiento personal',
